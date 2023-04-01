@@ -9,7 +9,6 @@ use App\Http\Controllers\UzimtumasController;
 class Darbuotojai extends Component
 {
     public $uzsakymas;
-    public $user_id;
     public function render()
     {
         return view('livewire.darbuotojai', [
@@ -21,5 +20,11 @@ class Darbuotojai extends Component
     public function deleteDarbuotojas($id){
         Uzimtumas::find($id)->delete();
         session()->flash('message', 'Post successfully updated.');
+    }
+
+    public function update($user_id, $uzimtumas_id){
+        
+        Uzimtumas::find($uzimtumas_id)->update(['user_id'=>$user_id]);
+        return redirect(request()->header('Referer'));
     }
 }
