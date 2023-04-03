@@ -38,21 +38,21 @@
 
                 <!-- nav -->
                 <nav>
-                    <a href="#"
+                    <a href="/pagrindinis"
                         class="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white">
-                        Home
+                        Pagrindinis
+                    </a>
+                    <a href="/uzsakymai"
+                        class="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white">
+                        Užsakymai
+                    </a>
+                    <a href="/darbuotojai"
+                        class="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white">
+                        Darbuotojai
                     </a>
                     <a href=""
                         class="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white">
-                        About
-                    </a>
-                    <a href=""
-                        class="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white">
-                        Features
-                    </a>
-                    <a href=""
-                        class="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white">
-                        Pricing
+                        Vartotojas
                     </a>
                 </nav>
             </div>

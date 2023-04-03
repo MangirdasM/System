@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -36,7 +37,7 @@ class UserController extends Controller
         'slaptazodis'=>'required']
         );
         
-        $formFields['slaptazodis'] = bcrypt($formFields['slaptazodis']);
+        //$formFields['slaptazodis'] = bcrypt($formFields['slaptazodis']);
 
 
         //dd($formFields);
@@ -46,38 +47,21 @@ class UserController extends Controller
         return redirect('/darbuotojai');
     }
 
-    public function login(){
-        return view('darbuotojai.login');
-    }
+    
 
-    public function logout(Request $request){
-        auth()->logout();
-        
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+    // public function edit(User $darbuotojas){
+    //     $darbuotojas => User::auth();
+    //     return view('darbuotojai.edit', ['darbuotojas' => $darbuotojas]);
+    //}
 
-        return redirect('/login')->with('message', 'You have been logged out');
-    }
-
-    // Auth user
-    public function authenticate(){
-        $formFields = request()->validate([
-            'email' => ['required', 'email'],
-            'password' => 'required'
+    public function update(User $user, Request $request)
+    {   
+        $user->update([
+            'vardas' => $request->name,
+            'epastas' => $request->email,
         ]);
 
-        if(auth()->attempt($formFields)){
-            request()->session()->regenerate();
-
-            return redirect('/pagrindinis')->with('message', 'You are logged in');
-        }
-
-        return back()->withErrors(['email' => 'Invalid crediantials'])->onlyInput('email');
+        return $this->success('profile','Profile updated successfully!');
     }
-
-    public function return_name($id){
-        return User::all()->where($id);
-    }
-
     
 }
