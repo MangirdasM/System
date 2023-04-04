@@ -17,7 +17,7 @@
                     <form>
                         <div class="mb-4">
                             <label for="email" class="inline-block text-lg mb-2">Email</label>
-                            <input type="email" class="shadow-sm border-gray-300 rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-blue-500 focus:border-blue-500" name="email" id='email' value="{{old('email')}}"/>
+                            <input type="text" class="shadow-sm border-gray-300 rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-blue-500 focus:border-blue-500" name="prisijungimoVardas" id='prisijungimoVardas' value="{{old('prisijungimoVardas')}}"/>
                             @error('email')
                                 <p class="text-red-500 text-xs mt-1">{{$message}}</p>   
                             @enderror

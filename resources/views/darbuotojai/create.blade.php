@@ -20,7 +20,7 @@
     
                 <div class="mb-6">
                     <label for="Epastas" class="inline-block text-lg mb-2">Epastas</label>
-                    <input type="Epastas" class="border border-gray-200 rounded p-2 w-full" name="Epastas" value="{{old('Epastas')}}"/>
+                    <input type="email" class="border border-gray-200 rounded p-2 w-full" name="Epastas" value="{{old('Epastas')}}"/>
                     @error('email')
                         <p class="text-red-500 text-xs mt-1">{{$message}}</p>   
                     @enderror
@@ -30,7 +30,7 @@
                     <label for="slaptazodis" class="inline-block text-lg mb-2">
                         slaptazodis
                     </label>
-                    <input type="slaptazodis" class="border border-gray-200 rounded p-2 w-full" name="slaptazodis" />
+                    <input type="password" class="border border-gray-200 rounded p-2 w-full" name="password" />
                     @error('password')
                         <p class="text-red-500 text-xs mt-1">{{$message}}</p>   
                     @enderror

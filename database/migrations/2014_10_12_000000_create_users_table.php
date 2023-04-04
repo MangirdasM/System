@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('vardas')->nullable();
             $table->string('pavarde')->nullable();
             $table->string('Epastas')->unique();
-            $table->string('slaptazodis');
-            $table->string('prisijungimoVardas');
+            $table->string('password');
+            $table->string('prisijungimoVardas')->unique();
             $table->string('Pareigos')->nullable();
             $table->string('telefonas')->nullable();
             $table->rememberToken();

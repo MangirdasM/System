@@ -8,6 +8,12 @@ use Illuminate\Http\RedirectResponse;
 
 class LoginController extends Controller
 {
+
+    public function username()
+    {
+        return 'prisijungimoVardas';
+    }
+
     public function login(){
         return view('darbuotojai.login');
     }
@@ -23,17 +29,17 @@ class LoginController extends Controller
 
     public function authenticate(Request $request): RedirectResponse
     {
-
-        
+        //$credentials = $request->only('prisijungimoVardas', 'password');
         $credentials = $request->validate([
-            'email' => ['required', 'email'],
+            'prisijungimoVardas' => ['required'],
             'password' => ['required'],
         ]);
 
         if (Auth::attempt($credentials)) {
+            
             $request->session()->regenerate();
  
-            return redirect()->intended('dashboard');
+            return redirect()->intended('pagrindinis');
         }
  
         return back()->withErrors([

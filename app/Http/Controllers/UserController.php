@@ -34,10 +34,10 @@ class UserController extends Controller
         $formFields = $request->validate([
         'prisijungimoVardas'=>'required',
         'Epastas'=>'required',
-        'slaptazodis'=>'required']
+        'password'=>'required']
         );
         
-        //$formFields['slaptazodis'] = bcrypt($formFields['slaptazodis']);
+        $formFields['password'] = bcrypt($formFields['password']);
 
 
         //dd($formFields);
