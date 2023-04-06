@@ -49,16 +49,16 @@ class UserController extends Controller
 
     
 
-    // public function edit(User $darbuotojas){
-    //     $darbuotojas => User::auth();
-    //     return view('darbuotojai.edit', ['darbuotojas' => $darbuotojas]);
-    //}
+    public function edit(User $darbuotojas){
+        $darbuotojas = auth()->user();
+        return view('darbuotojai.edit', ['darbuotojas' => $darbuotojas]);
+    }
 
     public function update(User $user, Request $request)
     {   
         $user->update([
             'vardas' => $request->name,
-            'epastas' => $request->email,
+            'Epastas' => $request->email,
         ]);
 
         return $this->success('profile','Profile updated successfully!');

@@ -3,7 +3,7 @@
 <head>
     @include('components.head')
 </head>
-<body>
+<body class="bg-gray-100">
     <div>
         <div class="relative min-h-screen md:flex">
 
@@ -27,6 +27,7 @@
                 class="sidebar bg-blue-800 text-blue-100 w-64 space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out">
 
                 <!-- logo -->
+                <span class="font-bold uppercase "> Welcome, {{auth()->user()->prisijungimoVardas}}</span>
                 <a href="#" class="text-white flex items-center space-x-2 px-4">
                     <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
@@ -53,6 +54,16 @@
                     <a href=""
                         class="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white">
                         Vartotojas
+                    </a>       
+                    <a href="/logout"
+                        class="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white">
+                        <form action="/logout" class="inline" method="POST">
+                            @csrf
+                            <button type="submit">
+                                <i class="fa-solid fa-door-closed"></i>
+                                Atsijungti
+                            </button>
+                        </form> 
                     </a>
                 </nav>
             </div>

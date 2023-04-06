@@ -47,7 +47,7 @@ Route::post('/inventorius', [InventoriusController::class, 'store']);
 
 
 // Show all uzsakymai
-Route::get('/uzsakymai', [UzsakymaiController::class, 'index']);
+Route::get('/uzsakymai', [UzsakymaiController::class, 'index'])->middleware("auth");;
 
 // Createe uzsakymas
 Route::get('/uzsakymai/sukurti', [UzsakymaiController::class, 'create']);
@@ -75,6 +75,8 @@ Route::post('/users/authenticate', [LoginController::class, 'authenticate']);
 
 // Log user out
 Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth');
+
+
 
 
 Route::view('/pagrindinis', 'pagrindinis');

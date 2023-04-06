@@ -1,4 +1,5 @@
 <x-layout>
+    <form action="edit/{{$darbutojas}}"></form>
     <div class="flex h-screen mx-auto">
         <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-3/5 px-8 pt-6 pb-8 mb-4">
 
