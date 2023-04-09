@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -30,11 +31,20 @@ class UserController extends Controller
     }
 
     public function store(Request $request){
+
+    
+
         $formFields = $request->validate([
-        'prisijungimoVardas'=>'required',
-        'password'=>'required']
+        'prisijungimoVardas'=>['required', 'unique:users,prisijungimoVardas'],
+        'pareigos' => 'required',
+        'password'=>['required', 'confirmed']], [
+            'prisijungimoVardas.unique' => 'Šis prisijungimo vardas jau užimtas!',
+            'prisijungimoVardas.required' => 'Prisijungimo vardo laukas yra privalomas!',
+            'password.required' => 'Slaptažodžio laukas yra privalomas!',
+            'password.confirmed' => 'Slaptažodžiai nesutampa!',
+        ]
         );
-        
+  
         $formFields['password'] = bcrypt($formFields['password']);
 
         User::create($formFields);
@@ -58,6 +68,7 @@ class UserController extends Controller
             'telefonas' => 'required',
             'prisijungimoVardas' => 'required',
             'Epastas' => 'required|email',
+            'filled' => 'required'
         ]);
 
         $user->update($formFields);

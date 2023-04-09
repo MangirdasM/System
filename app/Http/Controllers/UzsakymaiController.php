@@ -34,8 +34,20 @@ class UzsakymaiController extends Controller
     }
 
     public function store(Request $request){
-        //dd($request->all());
-        $formFields = $request->all();
+        
+        $formFields = $request->validate([
+            'data' => 'required',
+            'vieta' => 'required',
+            'papildoma' => 'nullable',
+            'kontaktinisasmuo' => 'required',
+            'sventestipas' => 'required',
+            'kontaktinisnumeris' => 'required',
+        ],[
+            'data.required' => 'Datos laukas yra privalomas!',
+            'vieta.required' => 'Vietos laukas yra privalomas!',
+            'kontaktinisasmuo.required' => 'Kontaktinio asmens laukas yra privalomas!',
+            'kontaktinisnumeris.required' => 'Kontaktinio numerio laukas yra privalomas!',
+        ]);
 
         Uzsakymas::create($formFields);
         

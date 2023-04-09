@@ -15,13 +15,14 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id('id');
-            $table->string('vardas')->nullable();
-            $table->string('pavarde')->nullable();
+            $table->string('vardas')->default('');
+            $table->string('pavarde')->default('');
             $table->string('Epastas')->nullable()->unique();
             $table->string('password');
             $table->string('prisijungimoVardas')->unique();
-            $table->string('Pareigos')->nullable();
-            $table->string('telefonas')->nullable();
+            $table->string('pareigos')->default('');
+            $table->string('telefonas')->default('');
+            $table->boolean('filled')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });

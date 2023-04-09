@@ -22,8 +22,10 @@ class User extends Authenticatable
         'pavarde',
         'Epastas',
         'telefonas',
+        'pareigos',
         'prisijungimoVardas',
         'password',
+        'filled'
     ];
 
     /**

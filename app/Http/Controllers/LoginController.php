@@ -37,8 +37,14 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
             
             $request->session()->regenerate();
- 
-            return redirect()->intended('pagrindinis');
+
+            if(Auth::user()->filled == 1){
+                return redirect()->intended('pagrindinis');
+            }
+            else{
+                return redirect()->intended('redaguoti');
+            }
+            
         }
  
         return back()->withErrors([

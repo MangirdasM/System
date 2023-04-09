@@ -2,11 +2,9 @@
     <div class="p-5 h-screen bg-gray-100">
         <div class="flex flex-col items-center p-4">
             <h1 class="text-xl mb-2 ">Darbuotojai</h1>
-        @if (session()->has('message'))
-            <div class="alert alert-success">
-                {{ session('message') }}
-            </div>
-        @endif
+            @if (session()->has('message'))
+            <div class="bg-green-500 text-white p-2 rounded mb-4">{{ session('message') }}</div>
+            @endif
         </div>
         
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">

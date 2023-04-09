@@ -50,6 +50,7 @@
               class="appearance-none border rounded w-full py-2 px-3 text-black-700 leading-tight focus:outline-none focus:shadow-outline"
               id="telefonas" name="telefonas" type="text" value="{{$user->telefonas}}">
       </div>
+      <input name="filled" value=1 hidden/>
       <div class="mb-4">
           <button
               class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
