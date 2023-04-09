@@ -51,8 +51,16 @@
                             {{ $uzsakymas['vieta'] }} {{ '/' }} {{ $uzsakymas['sventestipas'] }}
                         </td>
                         <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
+                            @if($uzsakymas->darbuotojai->isEmpty())
                             <span
-                                class="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-50">Delivered</span>
+                                class="p-1.5 text-xs font-medium uppercase tracking-wider text-red-800 bg-red-200 bold rounded-lg bg-opacity-50 ">Pridėti darbuotojus</span>
+                            @elseif(now()->format('Y-m-d') < $uzsakymas->data)
+                            <span
+                                class="p-1.5 text-xs font-medium uppercase tracking-wider  text-green-800 bg-green-200 bold rounded-lg bg-opacity-50 ">Paruošta</span>
+                            @else
+                            <span
+                                class="p-1.5 text-xs font-medium uppercase tracking-wider text-red-800 bg-red-200 rounded-lg bg-opacity-50">Įvykdytas</span>
+                            @endif
                         </td>
                         <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $uzsakymas['data'] }}</td>
                         <td class="flex gap-x-2 p-3 text-sm text-gray-700 whitespace-nowrap">

@@ -52,11 +52,6 @@ class UzsakymaiController extends Controller
     // Update listing data
     public function update(Request $request, Uzsakymas $uzsakymas)
     {
-        // Check if user is owner
-        // if($uzsakymas->user_id != auth()->id()){
-        //     abort('403', 'Unauthorized Action');
-        // }
-
         $formFields = $request->validate([
             'data' => 'required',
             'vieta' => 'required',
@@ -66,10 +61,6 @@ class UzsakymaiController extends Controller
             'kontaktinisnumeris' => 'required',
         ]);
 
-        // if ($request->hasFile('logo')) {
-        //     $formFields['logo'] = $request->file('logo')->store('logos', 'public');
-        // }
-        //dd($formFields);
         $uzsakymas->update($formFields);
 
         return back()->with('message', 'Listing updated succesfully!');
@@ -79,7 +70,7 @@ class UzsakymaiController extends Controller
     public function delete(Uzsakymas $uzsakymas)
     {
         $uzsakymas->delete();
-        return redirect('/')->with('message', 'Užsakymas sėkmingai pašalintas!');
+        return redirect('/uzsakymai')->with('message', 'Užsakymas sėkmingai pašalintas!');
     }
 
 

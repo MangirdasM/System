@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id('id');
             $table->string('vardas')->nullable();
             $table->string('pavarde')->nullable();
-            $table->string('Epastas')->unique();
+            $table->string('Epastas')->nullable()->unique();
             $table->string('password');
             $table->string('prisijungimoVardas')->unique();
             $table->string('Pareigos')->nullable();

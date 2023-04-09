@@ -25,11 +25,12 @@ Route::get('/darbuotojai/sukurti', [UserController::class, 'create']);
 
 // Store listing data
 Route::post('/darbuotojai', [UserController::class, 'store']);
+
 // Show edit and update form
-Route::middleware(['auth'])->group(function () {
-    Route::get('edit',[UserController::class,'edit'])->name('edit');
-    Route::post('edit/{user}',[UserController::class,'update'])->name('edit.update');
-  });
+Route::get('/redaguoti',[UserController::class,'edit']);
+
+Route::put('/redaguoti',[UserController::class,'update']);
+
 
 
 // Show all inventorius
@@ -83,3 +84,5 @@ Route::view('/pagrindinis', 'pagrindinis');
 
 
 Route::post('/uzimtumas', [UzimtumasController::class, 'store']);
+
+Route::post('/edit/password', [UserController::class, 'updatePassword']);

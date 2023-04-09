@@ -30,38 +30,41 @@ class UserController extends Controller
     }
 
     public function store(Request $request){
-        //dd($request->all());
         $formFields = $request->validate([
         'prisijungimoVardas'=>'required',
-        'Epastas'=>'required',
         'password'=>'required']
         );
         
         $formFields['password'] = bcrypt($formFields['password']);
 
-
-        //dd($formFields);
         User::create($formFields);
         
-        
-        return redirect('/darbuotojai');
+        return redirect('/darbuotojai')->with('message', 'Darbuotojas sėkmingai sukurtas!');
     }
 
     
 
-    public function edit(User $darbuotojas){
-        $darbuotojas = auth()->user();
-        return view('darbuotojai.edit', ['darbuotojas' => $darbuotojas]);
+    public function edit(){
+        return view('darbuotojai.edit')->with('user', auth()->user());
     }
 
-    public function update(User $user, Request $request)
+    public function update(Request $request)
     {   
-        $user->update([
-            'vardas' => $request->name,
-            'Epastas' => $request->email,
+
+        $user = Auth::user();
+        $formFields = $request->validate([
+            'vardas' => 'required',
+            'pavarde' => 'required',
+            'telefonas' => 'required',
+            'prisijungimoVardas' => 'required',
+            'Epastas' => 'required|email',
         ]);
 
-        return $this->success('profile','Profile updated successfully!');
-    }
-    
+        $user->update($formFields);
+
+        $user->save();
+
+
+        return back()->with('message', 'Vartotojas atnaujintas!');
+    }   
 }

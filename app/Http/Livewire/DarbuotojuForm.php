@@ -15,6 +15,8 @@ class DarbuotojuForm extends Component
     public $uzsakymas_id;
     public $uzsakymas_data;
 
+    public $showDiv = false;
+
     public $updateMode = false;
     public $inputs = [];
     public $i = 1;

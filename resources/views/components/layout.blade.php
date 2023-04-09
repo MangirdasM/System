@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <meta content='width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
     @include('components.head')
+    @livewireStyles
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 <body class="bg-gray-100">
     <div>
@@ -27,7 +33,7 @@
                 class="sidebar bg-blue-800 text-blue-100 w-64 space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out">
 
                 <!-- logo -->
-                <span class="font-bold uppercase "> Welcome, {{auth()->user()->prisijungimoVardas}}</span>
+                {{-- <span class="font-bold uppercase "> Welcome, {{auth()->user()->prisijungimoVardas}}</span> --}}
                 <a href="#" class="text-white flex items-center space-x-2 px-4">
                     <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
@@ -51,7 +57,7 @@
                         class="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white">
                         Darbuotojai
                     </a>
-                    <a href=""
+                    <a href="/redaguoti"
                         class="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white">
                         Vartotojas
                     </a>       
@@ -72,6 +78,9 @@
             <div class="flex-1 p-2 text-2xl font-bold gray-100">
                 
                 {{$slot}}
+
+                @livewire('livewire-ui-modal')
+                @livewireScripts
                 
             </div>
 

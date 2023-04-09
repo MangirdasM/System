@@ -1,12 +1,9 @@
 <div>
-    <label class="block text-gray-700 font-bold mb-2">
-        Darbuotojai
-    </label>
     <div class="flex flex-row">
         <form action="">
             @foreach ($uzsakymas->darbuotojai as $darbuotojas)
-                <div class="flex flex-col items-center gap-4 px-2">
-                    <select class="block appearance-none w-full bg-white border border-gray-400 hover:borderw leading-tight focus:outline-none focus:shadow-outline">
+                <div class="flex flex-row items-center gap-2 px-2">
+                    <select class="px-1 block rounded text-lg bg-white border border-gray-400 hover:borderw leading-tight focus:outline-none focus:shadow-outline">
                         
                         <option >{{ $darbuotojas->Epastas }}</option>
                         @foreach ($darbuotojai as $availableDarbuotojas)
@@ -14,8 +11,10 @@
                             </option>
                         @endforeach
                     </select>
-                    <button class="btn btn-blue" wire:click="deleteDarbuotojas({{ $darbuotojas->pivot->id }})">
-                        Pašalinti
+                    <button class="bg-red-500 rounded hover:bg-red-700" wire:click="deleteDarbuotojas({{ $darbuotojas->pivot->id }})">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="red" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                          </svg>  
                     </button>
                 </div>
             @endforeach

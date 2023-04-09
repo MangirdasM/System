@@ -20,6 +20,6 @@ class Uzsakymai extends Component
 
     public function deleteUzsakymas($id){
         Uzsakymas::find($id)->delete();
-        session()->flash('message', 'Post successfully updated.');
+        session()->flash('message', 'Užsakymas sėkmingai ištrintas!');
     }
 }

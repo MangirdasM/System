@@ -1,180 +1,110 @@
 <x-layout>
-    <form method="POST" action="/uzsakymai/{{ $uzsakymas->id }} enctype="multipart/form-data"">
+    <form method="POST" action="/uzsakymai/{{ $uzsakymas->id }}" enctype="multipart/form-data">
         @csrf
         @method('PUT')
-        <div class="flex h-screen mx-auto">
-            <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-3/5 px-8 pt-6 pb-8 mb-4">
-
-                <h2 class="text-2xl font-medium mb-4">{{ $uzsakymas->vieta . ' / ' . $uzsakymas->sventestipas }}
-                </h2>
-
-                <div class="">
-                    <div>
-                        <label class="block text-gray-700 font-bold mb-2" for="name">
-                            Kontaktinis asmuo
-                        </label>
-                        <input type="text" name="kontaktinisasmuo" class="input-style" id="kontaktinisasmuo"
-                            placeholder="Enter the name" value="{{ $uzsakymas->kontaktinisasmuo }}" />
-                    </div>
-
-                    <div>
-                        <label class="block text-gray-700 font-bold mb-2" for="number">
-                            Telefono numeris
-                        </label>
-                        <input type="text" name="kontaktinisnumeris" class="input-style" id="number"
-                            placeholder="Enter the number" value="{{ $uzsakymas->kontaktinisnumeris }}" />
-                    </div>
-
-                    <div>
-                        <label class="block text-gray-700 font-bold mb-2" for="type">
-                            Šventės tipas
-                        </label>
-                        <select name="sventestipas" class="input-style" id="type"
-                            value="{{ $uzsakymas->sventestipas }}">
-                            <option value="Type A">Gimtadienis</option>
-                            <option value="Type B">Vestuvės</option>
-                            <option value="Type C">Kita</option>
-                            <!-- More options... -->
-                        </select>
-                    </div>
-
-                    <div>
-                        <label class="block text-gray-700 font-bold mb-2" for="location">
-                            Vieta
-                        </label>
-                        <input type="text" name="vieta" class="input-style" id="location"
-                            placeholder="Enter the location" value="{{ $uzsakymas->vieta }}" />
-                    </div>
-
-                    <div>
-                        <label class="block text-gray-700 font-bold mb-2" for="date">
-                            Data
-                        </label>
-                        <input type="date" name="data" class="input-style" id="date"
+        <div class="mx-auto py-4 flex justify-center">
+            <div class="mx-auto lg:w-7/12 gap-4 shadow">
+                <div class="flex flex-col bg-white rounded shadow px-6 pt-4 text-center sm:text-left ">
+                    <h1 class="font-bold bg-gray-200 py-2 px-6 mt-6">{{ $uzsakymas->vieta }}{{'/'}}{{$uzsakymas->sventestipas}}</h1>
+                    <div class="divide-y divide-gray-200 border-solid border-2 border-gray-300">
+                        <div class="bg-gray-50 flex flex-col md:flex-row md:items-center p-2 gap-2">
+                            <label class="text-3xl inline-block text-lg" for="date">
+                                Data:   
+                            </label>
+                            <input type="date" name="date" class="text-lg" id="date"
                             value="{{ $uzsakymas->data }}" />
+                        </div>
+                        <div class="bg-gray-200 flex flex-col md:flex-row md:items-center p-2 gap-2">
+                            <label class="inline-block text-lg" for="vieta">
+                                Renginio vieta:
+                            </label>
+                            <input type="text" name="vieta" class="text-lg" id="vieta"
+                            value="{{ $uzsakymas->vieta }}" />
+                        </div>
+                        <div class="bg-gray-50 flex flex-col md:flex-row md:items-center p-2 gap-2">
+                            <label class="text-3xl inline-block text-lg" for="sventestipas">
+                                Šventės tipas:
+                            </label>
+                            <select name="sventestipas" class="text-lg" id="sventestipas"
+                            value="{{ $uzsakymas->sventestipas }}">
+                                <option value="Gimtadienis">Gimtadienis</option>
+                                <option value="Vestuvės">Vestuvės</option>
+                                <option value="pSvente">Privati šventė</option>
+                                <option value="Nuoma">Nuoma</option>
+                            </select>
+                        </div>
+                        <div class="bg-gray-200 flex flex-col md:flex-row md:items-center p-2 gap-2">
+                            <label class="text-3xl inline-block text-lg" for="kontaktinisasmuo">
+                                Kontaktinis asmuo:
+                            </label>
+                            <input type="text" name="kontaktinisasmuo" class="text-lg" id="kontaktinisasmuo"
+                            value="{{ $uzsakymas->kontaktinisasmuo }}" />
+                        </div>
+                        <div class="bg-gray-50 flex flex-col md:flex-row md:items-center p-2 gap-2">
+                            <label class="text-3xl inline-block text-lg" for="kontaktinisnumeris">
+                                Kontaktinio asmens numeris:
+                            </label>
+                            <input type="text" name="kontaktinisnumeris" class="text-lg" id="kontaktinisnumeris"
+                            value="{{ $uzsakymas->kontaktinisnumeris }}" />
+                        </div>
+                        <div class="bg-gray-50 flex flex-col md:flex-row md:items-center p-2 gap-2">
+                            <label class="text-3xl inline-block text-lg" for="papildoma">
+                                Papildoma informacija:
+                            </label>
+                            <textarea type="text" name="papildoma" class="text-lg" id="papildoma">
+                                {{$uzsakymas->papildoma}}
+                            </textarea>
+                        </div>
+                        <div>
+                            <div class="bg-gray-200 p-2 gap-2">
+                                <label class="text-3xl inline-block text-lg" for="date">
+                                    Darbuotojas/darbuotojai:
+                                </label>
+                                @if ($uzsakymas->darbuotojai->isEmpty())
+                                <h3 class="text-lg">Nera prisikirta darbuotoju!</h3>
+                                @else
+                                <div clas="container">
+                                    <livewire:darbuotojai :uzsakymas="$uzsakymas"/>
+                                </div>
+                                <div class="flex">
+                                    <livewire:darbuotoju-form :uzsakymas_id="$uzsakymas['id']" :uzsakymas_data="$uzsakymas['data']"/>
+                                </div>
+                                @endif  
+                            </div>
+                            
+                        </div>
+                        
+    
+                        <div class="bg-gray-50 p-2 gap-2">
+                            <label class="text-3xl inline-block text-lg mb-2" for="date">
+                                Inventorius:
+                            </label>
+                            <h3 class="text-lg mb-2">Nera priskirta inventoriaus!</h3>
+                        </div>
+                        
                     </div>
+                        
+        
+                        
+                        
+        
+                    <div class="flex flex-col items-center md:flex-row p-4 gap-2">
+                        <a href="{{url()->previous()}}" class="text-blue-400 rounded-xl">
+                            <button type="button" class="bg-green-500 hover:bg-green-700 text-white font-bold h-10 px-5 rounded">
+                                Grįžti
+                            </button>
+                        </a>
 
-                    <div>
-                        <label class="block text-gray-700 font-bold mb-2" for="other">
-                            Papildoma
-                        </label>
-                        <textarea name="papildoma" class="input-style" id="other" placeholder="Enter any other details">{{ $uzsakymas->papildoma }}</textarea>
+                        <div class="flex justify-end">
+                            <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold h-10 px-5 rounded">
+                                Atnaujinti
+                            </button>
+                        </div>
+
                     </div>
-
-                    <div clas="container">
-                        <livewire:darbuotojai :uzsakymas="$uzsakymas"/>
                     </div>
-                </div>
-
-                <div class="flex justify-end">
-                    <button type="submit" class="button-style">
-                        Atnaujinti
-                    </button>
-                </div>
-                <div class="flex justify-center items-center">
-                    <div class="bg-gray-200">
-                        <livewire:darbuotoju-form :uzsakymas_id="$uzsakymas['id']" :uzsakymas_data="$uzsakymas['data']" />
-                    </div>
-                </div>
-
-            </div>
-    </form>
-</x-layout>
-
-
-
-
-
-
-</body>
-
-</html>
-
-
-
-{{-- <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Laravel Livewire 9 Dynamically Add/Remove Input Fields - Tutsmake.com</title>
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css">
-<!-- Styles -->
-<style>
-    html,
-    body {
-        background-color: #fff;
-        color: #636b6f;
-        font-family: 'Nunito', sans-serif;
-        font-weight: 200;
-        height: 100vh;
-        margin: 0;
-    }
-
-    .full-height {
-        height: 100vh;
-    }
-
-    .flex-center {
-        align-items: center;
-        display: flex;
-        justify-content: center;
-    }
-
-    .position-ref {
-        position: relative;
-    }
-
-    .top-right {
-        position: absolute;
-        right: 10px;
-        top: 18px;
-    }
-
-    .content {
-        text-align: center;
-    }
-
-    .title {
-        font-size: 84px;
-    }
-
-    .links>a {
-        color: #636b6f;
-        padding: 0 25px;
-        font-size: 13px;
-        font-weight: 600;
-        letter-spacing: .1rem;
-        text-decoration: none;
-        text-transform: uppercase;
-    }
-
-    .m-b-md {
-        margin-bottom: 30px;
-    }
-</style>
-</head>
-
-<body>
-<div class="container mt-5">
-    <div class="row mt-5 justify-content-center">
-        <div class="mt-5 col-md-8">
-            <div class="card">
-                <div class="card-header bg-success text-white">
-                    <h5 style="font-size: 19px;">Laravel Livewire 9 Dynamically Add/Remove Input Fields -
-                        Tutsmake.com</h5>
-                </div>
-                <div class="card-body">
-                    <livewire:darbuotoju-form :uzsakymas_id="$uzsakymas['id']" :uzsakymas_data="$uzsakymas['data']"/>
-                </div>
+                    
             </div>
         </div>
-    </div>
-</div>
-@livewireScripts
-</body> --}}
-
-{{-- </html> --}}
+    </form>
+</x-layout>

@@ -9,7 +9,7 @@
                             <label for="prisijungimoVardas" class="inline-block text-lg mb-2">
                                 Prisijungimo vardas
                             </label>
-                            <input type="text" class="border border-gray-200 rounded p-2 w-full" name="prisijungimoVardas" value="{{old('prisijungimoVardas')}}" />
+                            <input type="text" class="border border-gray-200 rounded p-2 w-full" name="prisijungimoVardas"/>
                             @error('name')
                                 <p class="text-red-500 text-xs mt-1">{{$message}}</p>   
                             @enderror
