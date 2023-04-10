@@ -72,7 +72,6 @@ class UzsakymaiController extends Controller
             'sventestipas' => 'required',
             'kontaktinisnumeris' => 'required',
         ]);
-
         $uzsakymas->update($formFields);
 
         return back()->with('message', 'Listing updated succesfully!');

@@ -1,9 +1,9 @@
 <x-layout>
     <div class="mx-auto py-4 flex justify-center">
         <div class="mx-auto lg:w-7/12 gap-4 shadow">
-            <div class="flex flex-col bg-white rounded shadow px-6 pt-4 text-center sm:text-left ">
-                <h1 class="font-bold bg-gray-200 py-2 px-6 mt-6">{{ $uzsakymas->vieta }}{{'/'}}{{$uzsakymas->sventestipas}}</h1>
-                <div class="divide-y divide-gray-200 border-solid border-2 border-gray-300">
+            <div class="flex flex-col rounded shadow px-6 pt-4 text-center sm:text-left divide-y divide-gray-200 border-solid border-2 border-gray-300">
+                <h1 class="font-bold bg-gray-200 py-2 px-2 mt-6 border-b-2 border-gray-500">{{ $uzsakymas->vieta }}{{'/'}}{{$uzsakymas->sventestipas}}</h1>
+                <div class="">
                     <div class="bg-gray-50 flex flex-col md:flex-row md:items-center p-2 gap-2">
                         <label class="text-3xl inline-block text-lg" for="date">
                             Data:   
@@ -33,6 +33,12 @@
                             Kontaktinio asmens numeris:
                         </label>
                         <h3 class="text-lg">{{$uzsakymas->kontaktinisnumeris}}</h3>
+                    </div>
+                    <div class="bg-gray-50 flex flex-col md:flex-row md:items-center p-2 gap-2">
+                        <label class="text-3xl inline-block text-lg" for="date">
+                            Papildoma informacija:
+                        </label>
+                        <h3 class="text-lg">{{$uzsakymas->papildoma}}</h3>
                     </div>
                     <div>
                         <div class="bg-gray-200 p-2 gap-2">

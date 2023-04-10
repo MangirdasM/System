@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamps();
             $table->date('data');
             $table->string('vieta');
-            $table->string('papildoma');
+            $table->longText('papildoma');
             $table->string('kontaktinisasmuo');
             $table->string('sventestipas');
             $table->string('kontaktinisnumeris');

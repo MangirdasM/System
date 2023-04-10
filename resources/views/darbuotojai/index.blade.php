@@ -13,7 +13,8 @@
                 <div class="bg-white space-y-3 p-4 rounded-lg shadow">
                     <div class="flex items-center space-x-2 text-sm">
                         <div>
-                            <a href="#" class="text-blue-500 font-bold hover:underline">#{{ $darbuotojas['id'] }}</a>
+                            <a href="#" class="text-blue-500 font-bold hover:underline">#{{ $darbuotojas['vardas'] }}</a>
+                            <a href="#" class="text-blue-500 font-bold hover:underline">#{{ $darbuotojas['pavarde'] }}</a>
                         </div>
                         <div class="text-gray-500">{{ $darbuotojas['data'] }}</div>
                         <div>
@@ -31,26 +32,37 @@
             <table class="w-full">
                 <thead class="bg-gray-50 border-b-2 border-gray-200">
                     <tr>
+                        <th class="w-8 p-3 text-sm font-semibold tracking-wide text-left">Prisijungimo Vardas</th>
                         <th class="w-8 p-3 text-sm font-semibold tracking-wide text-left">Vardas</th>
                         <th class="w-8 p-3 text-sm font-semibold tracking-wide text-left">Pavarde</th>
                         <th class="w-8 p-3 text-sm font-semibold tracking-wide text-left">Pareigos</th>
                         <th class="w-8 p-3 text-sm font-semibold tracking-wide text-left">Elektroninis paštas</th>
                         <th class="w-8 p-3 text-sm font-semibold tracking-wide text-left">Telefono numeris</th>
+                        <th class="w-24 p-3 text-sm font-semibold tracking-wide text-left"></th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100">
     
                     @foreach ($darbuotojai as $darbuotojas)
+                        @if($darbuotojas->filled == 1)
+                            <tr class="bg-white">
+                                <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $darbuotojas['prisijungimoVardas'] }}</td>
+                                <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $darbuotojas['vardas'] }}</td>
+                                <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $darbuotojas['pavarde'] }}</td>
+                                <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $darbuotojas['pareigos'] }}</td>
+                                <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $darbuotojas['Epastas'] }}</td>
+                                <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $darbuotojas['telefonas'] }}</td>
+                            </tr>
+                        @else
                         <tr class="bg-white">
-                            <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
-                                <a href="/uzsakymai/{{ $darbuotojas->vardas }}"
-                                    class="font-bold text-blue-500 hover:underline">{{ $darbuotojas['vardas'] }}</a>
-                            </td>
-                            <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $darbuotojas['pavarde'] }}</td>
-                            <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $darbuotojas['Pareigos'] }}</td>
-                            <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $darbuotojas['Epastas'] }}</td>
-                            <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $darbuotojas['telefonas'] }}</td>
+                            <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{$darbuotojas['prisijungimoVardas']}}</td>
+                            <td class="p-3 text-sm text-gray-700 whitespace-nowrap"> Nėra </td>
+                            <td class="p-3 text-sm text-gray-700 whitespace-nowrap"> Nėra </td>
+                            <td class="p-3 text-sm text-gray-700 whitespace-nowrap"> {{$darbuotojas['pareigos']}} </td>
+                            <td class="p-3 text-sm text-gray-700 whitespace-nowrap"> Nėra </td>
+                            <td class="p-3 text-sm text-gray-700 whitespace-nowrap"> Nėra </td>
                         </tr>
+                        @endif
                     @endforeach
     
                 </tbody>

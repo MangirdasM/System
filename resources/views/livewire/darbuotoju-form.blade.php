@@ -1,6 +1,6 @@
 <div class="pt-4">
     @if (session()->has('message'))
-        <div class="bg-green-500 text-white p-2 rounded mb-4">{{ session('message') }}</div>
+        <div class="bg-green-500 text-white p-2 rounded mb-4 text-xl">{{ session('message') }}</div>
     @endif
 
     <div class="container pl-2 bg-gray-200">

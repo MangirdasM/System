@@ -69,6 +69,13 @@ class UserController extends Controller
             'prisijungimoVardas' => 'required',
             'Epastas' => 'required|email',
             'filled' => 'required'
+        ], [
+            'vardas.required' => 'Vardo laukas yra privalomas!',
+            'pavarde.required' => 'Pavardes laukas yra privalomas!',
+            'telefonas.required' => 'Telefono laukas yra privalomas!',
+            'prisijungimoVardas.required' => 'Prisijungimo vardo laukas yra privalomas!',
+            'Epastas.required' => 'Elektroninio pašto laukas yra privalomas!',
+            'Epastas.email' => 'Elektroninis paštas nėra tinkamo formato!',
         ]);
 
         $user->update($formFields);
