@@ -16,7 +16,7 @@ class ChangePassword extends ModalComponent
     protected $rules = [
         'old_password' => 'required',
         'new_password' => 'required|confirmed',
-        'new_password_confirmation' => 'same:password',
+        'new_password_confirmation' => 'same:new_password',
     ];
 
     public function render()

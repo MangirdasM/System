@@ -62,7 +62,7 @@
                                 Darbuotojas/darbuotojai:
                             </label>
                             @if ($uzsakymas->darbuotojai->isEmpty())
-                                <h3 class="text-lg">Nera prisikirta darbuotoju!</h3>
+                                <h3 class="text-lg text-red-600">Nera prisikirta darbuotoju!</h3>
                             @else
                                 <div clas="container">
                                     <livewire:darbuotojai-update :uzsakymas="$uzsakymas" />
@@ -80,7 +80,7 @@
                         <label class="text-3xl inline-block text-lg mb-2" for="date">
                             Inventorius:
                         </label>
-                        <h3 class="text-lg mb-2">Nera priskirta inventoriaus!</h3>
+                        <h3 class="text-lg text-red-600">Nera priskirta inventoriaus!</h3>
                     </div>
 
 

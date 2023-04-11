@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Uzimtumas;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
 class UzimtumasController extends Controller
@@ -25,7 +24,6 @@ class UzimtumasController extends Controller
         $collection = collect();
 
         foreach ($darbuotojai as $darbuotojas) {
-            //echo $darbuotojas->Epastas;
             if (sizeof($darbuotojas->uzsakymai)) {
                 foreach ($darbuotojas->uzsakymai as $value) {
 
@@ -33,7 +31,8 @@ class UzimtumasController extends Controller
                         $collection->push($darbuotojas);
                     }
                 }
-            } else {
+            } 
+            else{
                 $collection->push($darbuotojas);
             }
             
@@ -46,11 +45,9 @@ class UzimtumasController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
         $formFields = $request->all();
 
         Uzimtumas::create($formFields);
-
 
         return redirect('/uzsakymai');
     }

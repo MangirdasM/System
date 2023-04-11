@@ -14,12 +14,21 @@
             <div class="bg-white space-y-3 p-4 rounded-lg shadow">
                 <div class="flex items-center space-x-2 text-sm">
                     <div>
-                        <a href="#" class="text-blue-500 font-bold hover:underline">#{{ $uzsakymas['id'] }}</a>
+                        <a href="/uzsakymai/{{ $uzsakymas->id }}" class="text-blue-500 font-bold hover:underline">#{{ $uzsakymas['id'] }}</a>
                     </div>
                     <div class="text-gray-500">{{ $uzsakymas['data'] }}</div>
                     <div>
+                        @if(now()->format('Y-m-d') > $uzsakymas->data)
+                        
                         <span
-                            class="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-50">Delivered</span>
+                        class="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-50">Įvykdytas</span>    
+                        @elseif($uzsakymas->darbuotojai->isEmpty() )
+                        <span
+                            class="p-1.5 text-xs font-medium uppercase tracking-wider text-red-800 bg-red-200 bold rounded-lg bg-opacity-50 ">Pridėti darbuotojus</span>
+                        @else
+                        <span
+                            class="p-1.5 text-xs font-medium uppercase tracking-wider  text-yellow-800 bg-yellow-200 bold rounded-lg bg-opacity-50 ">Paruoštas</span>
+                        @endif
                     </div>
                 </div>
                 <div class="text-sm text-gray-700">
@@ -45,21 +54,22 @@
                     <tr class="bg-white">
                         <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
                             <a href="/uzsakymai/{{ $uzsakymas->id }}"
-                                class="font-bold text-blue-500 hover:underline">{{ $uzsakymas['id'] }}</a>
+                                class="font-bold text-blue-500 hover:underline">#{{ $uzsakymas['id'] }}</a>
                         </td>
                         <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
                             {{ $uzsakymas['vieta'] }} {{ '/' }} {{ $uzsakymas['sventestipas'] }}
                         </td>
                         <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
-                            @if($uzsakymas->darbuotojai->isEmpty())
+                            @if(now()->format('Y-m-d') > $uzsakymas->data)
+                            
+                            <span
+                            class="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-50">Įvykdytas</span>    
+                            @elseif($uzsakymas->darbuotojai->isEmpty() )
                             <span
                                 class="p-1.5 text-xs font-medium uppercase tracking-wider text-red-800 bg-red-200 bold rounded-lg bg-opacity-50 ">Pridėti darbuotojus</span>
-                            @elseif(now()->format('Y-m-d') < $uzsakymas->data)
-                            <span
-                                class="p-1.5 text-xs font-medium uppercase tracking-wider  text-green-800 bg-green-200 bold rounded-lg bg-opacity-50 ">Paruošta</span>
                             @else
                             <span
-                                class="p-1.5 text-xs font-medium uppercase tracking-wider text-red-800 bg-red-200 rounded-lg bg-opacity-50">Įvykdytas</span>
+                                class="p-1.5 text-xs font-medium uppercase tracking-wider  text-yellow-800 bg-yellow-200 bold rounded-lg bg-opacity-50 ">Paruoštas</span>
                             @endif
                         </td>
                         <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $uzsakymas['data'] }}</td>
@@ -83,7 +93,7 @@
                     </tr>
                 @endforeach
 
-                <tr class="bg-gray-50">
+                {{-- <tr class="bg-gray-50">
                     <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
                         <a href="#" class="font-bold text-blue-500 hover:underline">10002</a>
                     </td>
@@ -94,7 +104,7 @@
                             class="p-1.5 text-xs font-medium uppercase tracking-wider text-yellow-800 bg-yellow-200 rounded-lg bg-opacity-50">Shipped</span>
                     </td>
                     <td class="p-3 text-sm text-gray-700 whitespace-nowrap">16/10/2021</td>
-                </tr>
+                </tr> --}}
 
             </tbody>
 
@@ -111,7 +121,10 @@
                 Pridėti užsakymą
             </button>
         </form>
-        {{ $uzsakymai->links() }}
+        <div class="pt-4">
+            {{ $uzsakymai->links('pagination::tailwind') }}
+        </div>
+        
     </div>
 
 </div>

@@ -70,7 +70,7 @@
                           </svg>
                           Vartotojas
                     </a>       
-                    <a href="/logout"
+                    <a href="{{ url('logout') }}"
                         class="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white">
                         <form action="/logout" class="inline" method="POST">
                             @csrf
