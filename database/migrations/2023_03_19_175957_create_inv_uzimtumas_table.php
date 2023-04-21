@@ -15,14 +15,15 @@ return new class extends Migration
     {
         Schema::create('inv_uzimtumas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('inventoriaus_id');
-            $table->foreign('inventoriaus_id')->references('id')->on('inventoriuses')->onDelete('cascade');
+            $table->unsignedBigInteger('inventorius_id');
+            $table->foreign('inventorius_id')->references('id')->on('inventoriuses')->onDelete('cascade');
 
-            $table->unsignedBigInteger('uzsakymo_id');
-            $table->foreign('uzsakymo_id')->references('id')->on('uzsakymas')->onDelete('cascade');
+            $table->unsignedBigInteger('uzsakymas_id');
+            $table->foreign('uzsakymas_id')->references('id')->on('uzsakymas')->onDelete('cascade');
+            $table->string('kiekis');
 
             // And finally, the indexes (Better perfs when fetching data on that pivot table)
-            $table->index(['inventoriaus_id', 'uzsakymo_id'])->unique(); // This index has to be unique
+            $table->index(['inventorius_id', 'uzsakymas_id'])->unique(); // This index has to be unique
             $table->timestamps();
         });
     }

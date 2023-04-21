@@ -27,4 +27,8 @@ class Uzsakymas extends Model
     public function darbuotojai(){
         return $this->belongsToMany(User::class, 'uzimtumas')->withPivot('id');
     }
+
+    public function inventorius(){
+        return $this->belongsToMany(Inventorius::class, 'inv_uzimtumas')->withPivot('id', 'kiekis');
+    }
 }

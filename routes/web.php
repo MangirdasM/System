@@ -42,6 +42,13 @@ Route::get('/inventorius/sukurti', [InventoriusController::class, 'create']);
 // Store listing data
 Route::post('/inventorius', [InventoriusController::class, 'store']);
 
+Route::get('/inventorius/{inv}', [InventoriusController::class, 'show']);
+
+// Show edit form
+Route::get('inventorius/{inv}/redagavimas', [InventoriusController::class, 'edit']);
+
+Route::put('inventorius/{inv}', [InventoriusController::class, 'update']);
+
 
 
 
@@ -83,6 +90,6 @@ Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth');
 Route::view('/pagrindinis', 'pagrindinis');
 
 
-Route::post('/uzimtumas', [UzimtumasController::class, 'store']);
+#Route::post('/uzimtumas', [UzimtumasController::class, 'store']);
 
 Route::post('/edit/password', [UserController::class, 'updatePassword']);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Uzimtumas;
 use App\Models\Uzsakymas;
+use App\Models\Inventorius;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\User;
 
@@ -17,7 +18,7 @@ class UzsakymaiController extends Controller
         ]);
     }
 
-    public function show(Uzsakymas $uzsakymas, User $darbuotojas)
+    public function show(Uzsakymas $uzsakymas, User $darbuotojas, Inventorius $inv)
     {
         // $user = User::where('name', '=', 'TOmas')->first();
         // if ($user != null) {
@@ -25,6 +26,7 @@ class UzsakymaiController extends Controller
         // }
         return view('uzsakymai.show', [
             'uzsakymas' => $uzsakymas,
+            'inv' => $inv->all(),
             'darbuotojai' => $darbuotojas->all()
         ]);
     }

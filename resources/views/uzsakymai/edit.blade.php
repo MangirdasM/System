@@ -63,13 +63,14 @@
                             </label>
                             @if ($uzsakymas->darbuotojai->isEmpty())
                                 <h3 class="text-lg text-red-600">Nera prisikirta darbuotoju!</h3>
+                                <div class="flex">
+                                    <livewire:darbuotoju-form :uzsakymas_id="$uzsakymas['id']" :uzsakymas_data="$uzsakymas['data']" />
+                                </div>
                             @else
                                 <div clas="container">
                                     <livewire:darbuotojai-update :uzsakymas="$uzsakymas" />
                                 </div>
-                                <div class="flex">
-                                    <livewire:darbuotoju-form :uzsakymas_id="$uzsakymas['id']" :uzsakymas_data="$uzsakymas['data']" />
-                                </div>
+                                
                             @endif
                         </div>
 
@@ -80,7 +81,17 @@
                         <label class="text-3xl inline-block text-lg mb-2" for="date">
                             Inventorius:
                         </label>
-                        <h3 class="text-lg text-red-600">Nera priskirta inventoriaus!</h3>
+                        @if ($uzsakymas->inventorius->isEmpty())
+                                <h3 class="text-lg text-red-600">Nera prisikirta inventoriaus!</h3>
+                                <div class="flex">
+                                    <livewire:inventoriaus-form :uzsakymas_id="$uzsakymas['id']" :uzsakymas_data="$uzsakymas['data']" />
+                                </div>
+                            @else
+                                <div clas="container">
+                                    <livewire:inventorius-update :uzsakymas="$uzsakymas" />
+                                </div>
+                                
+                            @endif
                     </div>
 
 

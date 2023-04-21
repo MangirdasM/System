@@ -64,7 +64,19 @@
                         <label class="text-3xl inline-block text-lg mb-2" for="date">
                             Inventorius:
                         </label>
-                        <h3 class="text-lg text-red-600">Nera priskirta inventoriaus!</h3>
+                        @if ($uzsakymas->inventorius->isEmpty())
+                        <h3 class="text-lg text-red-600">Nera prisikirta inventoriaus!</h3>
+                        <div class="flex">
+                            <livewire:inventoriaus-form :uzsakymas_id="$uzsakymas['id']" :uzsakymas_data="$uzsakymas['data']"/>
+                        </div>
+                        @else
+                        @foreach ($uzsakymas->inventorius as $inv)
+                        <h3 class="text-lg">{{$inv->tipas}} {{$inv->pavadinimas}}, {{$inv->pivot->kiekis}}</h3>
+                        @endforeach
+                        <div class="flex">
+                            <livewire:inventoriaus-form :uzsakymas_id="$uzsakymas['id']" :uzsakymas_data="$uzsakymas['data']"/>
+                        </div>
+                        @endif  
                     </div>
                     
                 </div>

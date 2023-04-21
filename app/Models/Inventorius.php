@@ -19,6 +19,6 @@ class Inventorius extends Model
     ];
 
     public function uzsakymai(){
-        return $this->belongsToMany(Uzsakymas::class);
+        return $this->belongsToMany(Uzsakymas::class, 'inv_uzimtumas')->withPivot('kiekis');
     }
 }
