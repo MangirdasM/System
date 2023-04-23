@@ -9,11 +9,12 @@ use App\Http\Controllers\InvUzimtumasController;
 class InventoriusUpdate extends Component
 {
     public $uzsakymas;
+    public $tipas;
     public function render()
     {
         return view('livewire.inventorius-update', [
             'uzsakymas' => $this->uzsakymas,
-            'inventorius' => InvUzimtumasController::available_inventorius($this->uzsakymas->data),
+            'inventorius' => InvUzimtumasController::available_inventorius($this->uzsakymas->data, $this->tipas),
         ]);
     }
 

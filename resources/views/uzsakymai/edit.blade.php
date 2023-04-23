@@ -90,6 +90,9 @@
                                 <div clas="container">
                                     <livewire:inventorius-update :uzsakymas="$uzsakymas" />
                                 </div>
+                                {{-- <div class="flex">
+                                    <livewire:inventoriaus-form :uzsakymas_id="$uzsakymas['id']" :uzsakymas_data="$uzsakymas['data']" />
+                                </div> --}}
                                 
                             @endif
                     </div>
@@ -99,7 +102,7 @@
 
 
 
-                    <div class="flex flex-col items-center md:flex-row p-4 gap-2">
+                    {{-- <div class="flex flex-col items-center md:flex-row p-4 gap-2">
                         <a href="{{ url()->previous() }}" class="text-blue-400 rounded-xl">
                             <button type="button"
                                 class="bg-green-500 hover:bg-green-700 text-white font-bold h-10 px-5 rounded">
@@ -114,7 +117,7 @@
                             </button>
                         </div>
 
-                    </div>
+                    </div> --}}
                 </div>
 
             </div>
