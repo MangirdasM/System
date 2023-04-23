@@ -89,6 +89,8 @@ Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth');
 
 Route::view('/pagrindinis', 'pagrindinis');
 
+Route::view('/kalendorius', 'kalendorius');
+
 
 #Route::post('/uzimtumas', [UzimtumasController::class, 'store']);
 
