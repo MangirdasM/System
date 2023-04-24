@@ -32,7 +32,7 @@
                         <label class="text-3xl inline-block text-lg" for="date">
                             Nuotrauka:
                         </label>
-                        <h3 class="text-lg">{{$inv->nuotrauka}}</h3>
+                        <img src="/storage/{{$inv->nuotrauka}}" alt="" class="object-contain h-48 w-96">
                     </div>
                     <div class="bg-gray-50 flex flex-col md:flex-row md:items-center p-2 gap-2">
                         <label class="text-3xl inline-block text-lg" for="date">

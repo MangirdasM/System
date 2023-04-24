@@ -36,11 +36,10 @@ class InventoriusController extends Controller
         ]);
 
         $imagePath = request('nuotrauka')->store('uploads', 'public');
+        
         $image = Image::make(public_path("storage/{$imagePath}"))->fit(1200,1200);
         $image->save();
-        dd($formFields);
-        
-
+        $formFields['nuotrauka'] = $imagePath;
         Inventorius::create($formFields);
         
         return redirect('/uzsakymai');
