@@ -1,5 +1,5 @@
 <x-layout>
-    <form method="POST" action="/inventorius">
+    <form method="POST" action="/inventorius" enctype="multipart/form-data">
         @csrf
         <div class="flex flex-col items-center justify-center h-screen bg-gray-100">
             <div class="w-full max-w-lg">
@@ -52,13 +52,13 @@
                                 <p class="text-red-500 text-base mt-1">{{$message}}</p>   
                             @enderror
                     </div>
+                    
                     <div class="mb-4">
-                        <label class="inline-block text-lg mb-2" for="data">
+                        @csrf
+                        <label class="inline-block text-lg mb-2" for="nuotrauka">
                             Nuotrauka
                         </label>
-                        <input
-                            class="shadow-sm border-gray-300 rounded-md w-full py-2 px-3 text-black-700 leading-tight focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                            id="nuotrauka" name="nuotrauka" type="date" />
+                        <input type="file" class="form-control" name="nuotrauka" />
                         @error('nuotrauka')
                         <p class="text-red-500 text-base mt-1">{{$message}}</p>   
                         @enderror
@@ -82,6 +82,5 @@
             </div>
         </div>
     </form>
-
 </x-layout>
 

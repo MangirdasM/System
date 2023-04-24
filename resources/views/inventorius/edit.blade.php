@@ -58,7 +58,7 @@
                     </div>
 
                     <div class="flex flex-col items-center md:flex-row p-4 gap-2">
-                        <a href="{{ url()->previous() }}" class="text-blue-400 rounded-xl">
+                        <a href="/inventorius/{{$inv->id}}" class="text-blue-400 rounded-xl">
                             <button type="button"
                                 class="bg-green-500 hover:bg-green-700 text-white font-bold h-10 px-5 rounded">
                                 Grįžti

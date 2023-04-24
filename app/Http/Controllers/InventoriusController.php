@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Inventorius;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 class InventoriusController extends Controller
 {
@@ -21,19 +22,24 @@ class InventoriusController extends Controller
     }
 
     public function store(Request $request){
-        #dd($request->all());
         $formFields = $request->validate([
             'pavadinimas' => 'required',
             'kiekis' => 'required',
             'tipas' => 'required',
             'kodas' => 'required',
             'komentarai' => 'required',
-            'nuotrauka' => 'required'
+            'nuotrauka' => 'file|image|mimes:jpg,jpeg,png,gif'
         ],[
             'pavadinimas.required' => 'Pavadinimo laukas yra privalomas!',
             'kiekis.required' => 'Kiekio laukas yra privalomas!',
             'kodas.required' => 'Kontaktinio numerio laukas yra privalomas!',
         ]);
+
+        $imagePath = request('nuotrauka')->store('uploads', 'public');
+        $image = Image::make(public_path("storage/{$imagePath}"))->fit(1200,1200);
+        $image->save();
+        dd($formFields);
+        
 
         Inventorius::create($formFields);
         
