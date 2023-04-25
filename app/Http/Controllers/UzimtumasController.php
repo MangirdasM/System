@@ -10,14 +10,6 @@ class UzimtumasController extends Controller
 {
     public static function available_darbuotojai($uzsakymo_data)
     {
-        // $uzimtumas = User::with('uzsakymai')->get();
-
-        // $collection = $uzimtumas->filter(function ($darbuotojas) use ($uzsakymo_data) {
-        //     return 
-        //         $darbuotojas->uzsakymai->where('data', $uzsakymo_data)->isNotEmpty();
-        // });
-
-        // return $collection;
         $uzimtumas = new User;
         $darbuotojai = $uzimtumas->all();
 

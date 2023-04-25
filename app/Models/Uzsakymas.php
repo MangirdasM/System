@@ -31,4 +31,8 @@ class Uzsakymas extends Model
     public function inventorius(){
         return $this->belongsToMany(Inventorius::class, 'inv_uzimtumas')->withPivot('id', 'kiekis');
     }
+
+    public function apklausos(){
+        return $this->belongsToMany(Apklausa::class,)->withPivot('id');
+    }
 }

@@ -11,11 +11,7 @@ use Illuminate\Foundation\Auth\User;
 class UzsakymaiController extends Controller
 {
     function index(){
-        return view('uzsakymai.index', [
-        
-            'heading'=>'Labas rytas',
-            'uzsakymai'=>Uzsakymas::paginate(5)
-        ]);
+        return view('uzsakymai.index');
     }
 
     public function show(Uzsakymas $uzsakymas, User $darbuotojas, Inventorius $inv)

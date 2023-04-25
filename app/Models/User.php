@@ -47,6 +47,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function hasRole($role)
+    {
+        return $this->pareigos == $role;
+    }
+
     public function findForPassport($username) {
         return $this->where('username', $username)->first();
     }

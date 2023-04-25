@@ -2,9 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ApklausosController;
 use App\Http\Controllers\UzsakymaiController;
 use App\Http\Controllers\InventoriusController;
-use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -95,3 +96,12 @@ Route::view('/kalendorius', 'kalendorius');
 #Route::post('/uzimtumas', [UzimtumasController::class, 'store']);
 
 Route::post('/edit/password', [UserController::class, 'updatePassword']);
+
+
+Route::get('/apklausos', [ApklausosController::class, 'index'])->middleware("auth");
+
+Route::get('/apklausos/{apklausa}', [ApklausosController::class, 'show']);
+
+Route::get('apklausos/{apklausa}/pildyti', [ApklausosController::class, 'edit']);
+
+Route::put('/apklausos/{apklausa}', [ApklausosController::class, 'update']);
