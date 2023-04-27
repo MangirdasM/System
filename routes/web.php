@@ -30,6 +30,7 @@ Route::post('/darbuotojai', [UserController::class, 'store']);
 // Show edit and update form
 Route::get('/redaguoti',[UserController::class,'edit']);
 
+// Update user
 Route::put('/redaguoti',[UserController::class,'update']);
 
 
@@ -43,12 +44,17 @@ Route::get('/inventorius/sukurti', [InventoriusController::class, 'create']);
 // Store listing data
 Route::post('/inventorius', [InventoriusController::class, 'store']);
 
+// Show single inventorius
 Route::get('/inventorius/{inv}', [InventoriusController::class, 'show']);
 
 // Show edit form
 Route::get('inventorius/{inv}/redagavimas', [InventoriusController::class, 'edit']);
 
+// Update inventorius
 Route::put('inventorius/{inv}', [InventoriusController::class, 'update']);
+
+// Delete inventorius
+Route::delete('inventorius/{inventorius}', [InventoriusController::class, 'delete']);
 
 
 
@@ -64,6 +70,7 @@ Route::get('/uzsakymai/sukurti', [UzsakymaiController::class, 'create']);
 // Store uzsakymas data
 Route::post('/uzsakymai', [UzsakymaiController::class, 'store']);
 
+// Show single uzsakymas
 Route::get('/uzsakymai/{uzsakymas}', [UzsakymaiController::class, 'show']);
 
 // Show edit form
@@ -77,13 +84,13 @@ Route::delete('uzsakymai/{uzsakymas}', [UzsakymaiController::class, 'delete']);
 
 
 // Show login form
-Route::get('/login', [LoginController::class, 'login'])->name('login')->middleware("guest");
+Route::get('/prisijungimas', [LoginController::class, 'login'])->name('login')->middleware("guest");
 
 // Login user
 Route::post('/users/authenticate', [LoginController::class, 'authenticate']);
 
 // Log user out
-Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth');
+Route::post('/atsijungti', [LoginController::class, 'logout'])->middleware('auth');
 
 
 
@@ -93,17 +100,20 @@ Route::view('/pagrindinis', 'pagrindinis');
 Route::view('/kalendorius', 'kalendorius');
 
 
-#Route::post('/uzimtumas', [UzimtumasController::class, 'store']);
-
+// Update password
 Route::post('/edit/password', [UserController::class, 'updatePassword']);
 
-
+// Show all apklausos
 Route::get('/apklausos', [ApklausosController::class, 'index'])->middleware("auth");
 
+// Show single apklausa
 Route::get('/apklausos/{apklausa}', [ApklausosController::class, 'show']);
 
+// Fill apklausa form
 Route::get('apklausos/{apklausa}/pildyti', [ApklausosController::class, 'edit']);
 
+// Update apklausa
 Route::put('/apklausos/{apklausa}', [ApklausosController::class, 'update']);
 
+// Save as pdf
 Route::get('/a', [UzsakymaiController::class, 'createPDF']);

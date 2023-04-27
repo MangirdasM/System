@@ -45,7 +45,7 @@
                         <label class="text-3xl inline-block text-lg" for="nuotrauka">
                             Nuotrauka:
                         </label>
-                        <input type="text" name="nuotrauka" class="text-lg" id="nuotrauka"
+                        <input type="file" name="nuotrauka" class="text-lg" id="nuotrauka"
                             value="{{ $inv->nuotrauka }}" />
                     </div>
                     <div class="bg-gray-50 flex flex-col md:flex-row md:items-center p-2 gap-2">

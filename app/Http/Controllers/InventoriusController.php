@@ -42,7 +42,7 @@ class InventoriusController extends Controller
         $formFields['nuotrauka'] = $imagePath;
         Inventorius::create($formFields);
         
-        return redirect('/uzsakymai');
+        return redirect('/inventorius')->with('message', 'Inventorius sėkmingai sukurtas!');
     }
 
     public function show(Inventorius $inv, User $darbuotojas)
@@ -71,11 +71,28 @@ class InventoriusController extends Controller
             'kiekis' => 'required',
             'kodas' => 'required',
             'komentarai' => 'required',
-            'nuotrauka' => 'required',
+            'nuotrauka' => 'file|image|mimes:jpg,jpeg,png,gif',
             'tipas' => 'required',
+        ], [
+            'pavadinimas.required' => 'Pavadinimo laukas yra privalomas!',
+            'kiekis.required' => 'Kiekio laukas yra privalomas!',
+            'kodas.required' => 'Kodo laukas yra privalomas!',
         ]);
+
+        $imagePath = request('nuotrauka')->store('uploads', 'public');
+        
+        $image = Image::make(public_path("storage/{$imagePath}"))->fit(1200,1200);
+        $image->save();
+        $formFields['nuotrauka'] = $imagePath;
+
         $inv->update($formFields);
 
-        return back()->with('message', 'Inventorius sėkmingai atnaujintas!');
+        return redirect('/inventorius')->with('message', 'Inventorius sėkmingai atnaujintas!');
+    }
+
+    public function delete(Inventorius $inventorius)
+    {
+        $inventorius->delete();
+        return redirect('/inventorius')->with('message', 'Inventorius sėkmingai pašalintas!');
     }
 }

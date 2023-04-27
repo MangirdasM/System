@@ -57,7 +57,7 @@
                             Redaguoti
                         </button>
                     </a>
-                    <form method="POST" action="/uzsakymai/{{$inv->id}}/">
+                    <form method="POST" action="/inventorius/{{$inv->id}}/">
                         @csrf
                         @method("DELETE")
                         <button class="bg-red-500 hover:bg-red-700 text-white font-bold h-10 px-5 rounded">

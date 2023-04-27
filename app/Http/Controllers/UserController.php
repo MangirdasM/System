@@ -66,7 +66,7 @@ class UserController extends Controller
             'vardas' => 'required',
             'pavarde' => 'required',
             'telefonas' => 'required',
-            'prisijungimoVardas' => 'required|unique',
+            'prisijungimoVardas' => 'required',
             'Epastas' => 'required|email',
             'filled' => 'required'
         ], [
