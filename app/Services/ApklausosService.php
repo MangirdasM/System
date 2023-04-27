@@ -2,9 +2,6 @@
 namespace App\Services;
 
 use App\Models\Apklausa;
-use Illuminate\Support\Facades\Hash;
-use \Illuminate\Support\Facades\DB;
-use App\Models\User;
 use App\Models\Uzsakymas;
 
     class ApklausosService

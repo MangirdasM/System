@@ -95,7 +95,7 @@
                             Redaguoti
                         </button>
                     </a>
-                    <a href="{{$uzsakymas->id}}/redagavimas" class="text-blue-400 rounded-xl">
+                    <a href="{{$uzsakymas->id}}/pdf" class="text-blue-400 rounded-xl">
                         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold h-10 px-5 rounded">
                             Išsaugoti
                         </button>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Services\pdfService;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
@@ -62,7 +63,7 @@ Route::delete('inventorius/{inventorius}', [InventoriusController::class, 'delet
 
 
 // Show all uzsakymai
-Route::get('/uzsakymai', [UzsakymaiController::class, 'index'])->middleware("auth");;
+Route::get('/uzsakymai', [UzsakymaiController::class, 'index'])->middleware("auth");
 
 // Createe uzsakymas
 Route::get('/uzsakymai/sukurti', [UzsakymaiController::class, 'create']);
@@ -116,4 +117,4 @@ Route::get('apklausos/{apklausa}/pildyti', [ApklausosController::class, 'edit'])
 Route::put('/apklausos/{apklausa}', [ApklausosController::class, 'update']);
 
 // Save as pdf
-Route::get('/a', [UzsakymaiController::class, 'createPDF']);
+Route::get('/uzsakymai/{uzsakymas}/pdf', [pdfService::class, 'createPDF']);

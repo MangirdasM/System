@@ -63,13 +63,16 @@
                             @if(now()->format('Y-m-d') > $uzsakymas->data)
                             
                             <span
-                            class="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-50">Įvykdytas</span>    
+                            class="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-50">Įvykdytas</span>  
+                            @elseif($uzsakymas->darbuotojai->isEmpty() and $uzsakymas->inventorius->isEmpty() )
+                            <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-red-800 bg-red-200 bold rounded-lg bg-opacity-50 ">Pridėti darbuotojus</span> 
+                            <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-red-800 bg-red-200 bold rounded-lg bg-opacity-50 ">Pridėti inventorių</span>    
                             @elseif($uzsakymas->darbuotojai->isEmpty() )
-                            <span
-                                class="p-1.5 text-xs font-medium uppercase tracking-wider text-red-800 bg-red-200 bold rounded-lg bg-opacity-50 ">Pridėti darbuotojus</span>
+                            <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-red-800 bg-red-200 bold rounded-lg bg-opacity-50 ">Pridėti darbuotojus</span>
+                            @elseif($uzsakymas->inventorius->isEmpty() )
+                            <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-red-800 bg-red-200 bold rounded-lg bg-opacity-50 ">Pridėti inventorių</span>
                             @else
-                            <span
-                                class="p-1.5 text-xs font-medium uppercase tracking-wider  text-yellow-800 bg-yellow-200 bold rounded-lg bg-opacity-50 ">Paruoštas</span>
+                            <span class="p-1.5 text-xs font-medium uppercase tracking-wider  text-yellow-800 bg-yellow-200 bold rounded-lg bg-opacity-50 ">Paruoštas</span>
                             @endif
                         </td>
                         <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $uzsakymas['data'] }}</td>
@@ -92,20 +95,6 @@
                         </td>
                     </tr>
                 @endforeach
-
-                {{-- <tr class="bg-gray-50">
-                    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
-                        <a href="#" class="font-bold text-blue-500 hover:underline">10002</a>
-                    </td>
-                    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">Kring New Fit office chair, mesh + PU,
-                        black</td>
-                    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
-                        <span
-                            class="p-1.5 text-xs font-medium uppercase tracking-wider text-yellow-800 bg-yellow-200 rounded-lg bg-opacity-50">Shipped</span>
-                    </td>
-                    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">16/10/2021</td>
-                </tr> --}}
-
             </tbody>
 
         </table>
@@ -125,7 +114,7 @@
             {{ $uzsakymai->links('pagination::tailwind') }}
         </div>
 
-        <a class="btn btn-primary" href="{{ URL::to('/uzsakymai/pdf') }}">Export to PDF</a>
+        
         
     </div>
 
