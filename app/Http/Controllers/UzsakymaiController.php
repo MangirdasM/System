@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use PDF;
 use App\Models\Uzimtumas;
 use App\Models\Uzsakymas;
 use App\Models\Inventorius;
@@ -69,6 +70,12 @@ class UzsakymaiController extends Controller
             'kontaktinisasmuo' => 'required',
             'sventestipas' => 'required',
             'kontaktinisnumeris' => 'required',
+        ], [
+            'data.required' => 'Datos laukas yra privalomas!',
+            'vieta.required' => 'Vietos laukas yra privalomas!',
+            'kontaktinisasmuo.required' => 'Kontaktinio asmens laukas yra privalomas!',
+            'kontaktinisnumeris.required' => 'Kontaktinio numerio laukas yra privalomas!',
+            'papildoma.required' => 'Papildomos informacijos laukas yra privalomas!',
         ]);
         $uzsakymas->update($formFields);
 
@@ -81,6 +88,21 @@ class UzsakymaiController extends Controller
         $uzsakymas->delete();
         return redirect('/uzsakymai')->with('message', 'Užsakymas sėkmingai pašalintas!');
     }
+
+    public function createPDF(Uzsakymas $uzsakymas, User $darbuotojas, Inventorius $inv) {
+        // retreive all records from db
+        #$data = new Uzsakymas;
+        $uzsakymas = $uzsakymas->where('id', '1')->get();
+        #dd($uzsakymas[0]->darbuotojai);
+        
+        // share data to view
+        view()->share('uzsakymas',$uzsakymas[0]);
+        view()->share('darbuotojai',$uzsakymas[0]->darbuotojai);
+        view()->share('inventorius',$uzsakymas[0]->inventorius);
+        $pdf = PDF::loadView('uzsakymai.export_pdf');
+        // download PDF file with download method
+        return $pdf->download('pdf_file.pdf');
+      }
 
 
 

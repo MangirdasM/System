@@ -10,6 +10,9 @@ class InventoriusUpdate extends Component
 {
     public $uzsakymas;
     public $tipas;
+
+    protected $listeners = ['refreshComponent' => '$refresh'];
+
     public function render()
     {
         return view('livewire.inventorius-update', [
@@ -20,6 +23,7 @@ class InventoriusUpdate extends Component
 
     public function deleteInventorius($id){
         Inv_Uzimtumas::find($id)->delete();
+        $this->emit('refreshComponent');
         session()->flash('message', 'Inventorius sėkmingai pašalintas!');
     }
 

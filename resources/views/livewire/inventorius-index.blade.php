@@ -65,10 +65,8 @@
                             class="p-3 text-sm text-gray-700 whitespace-nowrap">{{$inv['pavadinimas']}}</span>    
                             
                         </td>
-                        <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $inv['data'] }}</td>
+                        <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $inv['kiekis'] }}</td>
                         <td class="flex gap-x-2 p-3 text-sm text-gray-700 whitespace-nowrap">
-
-
                             <button wire:click="deleteInventorius({{ $inv->id }})">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -85,29 +83,9 @@
                         </td>
                     </tr>
                 @endforeach
-
-                {{-- <tr class="bg-gray-50">
-                    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
-                        <a href="#" class="font-bold text-blue-500 hover:underline">10002</a>
-                    </td>
-                    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">Kring New Fit office chair, mesh + PU,
-                        black</td>
-                    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
-                        <span
-                            class="p-1.5 text-xs font-medium uppercase tracking-wider text-yellow-800 bg-yellow-200 rounded-lg bg-opacity-50">Shipped</span>
-                    </td>
-                    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">16/10/2021</td>
-                </tr> --}}
-
             </tbody>
-
         </table>
-
-
-
-
     </div>
-
     <div class='p-5 flex flex-col items-center justify-center'>
         <form action="/inventorius/sukurti" method="GET">
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
@@ -116,10 +94,8 @@
         </form>
         <div class="pt-4">
             {{ $inventorius->links('pagination::tailwind') }}
-        </div>
-        
+        </div>   
     </div>
-
 </div>
 
 

@@ -1,4 +1,5 @@
 <x-layout>
+    
     <div class="mx-auto py-4 flex justify-center">
         <div class="mx-auto lg:w-7/12 gap-4 shadow">
             <div class="flex flex-col rounded shadow px-6 pt-4 text-center sm:text-left divide-y divide-gray-200 border-solid border-2 border-gray-300">
@@ -55,12 +56,10 @@
                             <h3 class="text-lg">{{$darbuotojas->vardas}} {{$darbuotojas->pavarde}}, {{$darbuotojas->telefonas}}</h3>
                             @endforeach
                             @endif  
-                        </div>
-                        
+                        </div>                
                     </div>
-                    
 
-                    <div class="bg-gray-50">
+                    <div class="bg-gray-50">     
                         <label class="text-3xl inline-block text-lg mb-2" for="date">
                             Inventorius:
                         </label>
@@ -70,15 +69,15 @@
                             <livewire:inventoriaus-form :uzsakymas_id="$uzsakymas['id']" :uzsakymas_data="$uzsakymas['data']"/>
                         </div>
                         @else
-                        @foreach ($uzsakymas->inventorius as $inv)
-                        <h3 class="text-lg">{{$inv->tipas}} {{$inv->pavadinimas}}, {{$inv->pivot->kiekis}}</h3>
-                        @endforeach
+                        <div clas="container">
+                            <livewire:inventorius-update :uzsakymas="$uzsakymas" />
+                        </div>
+                        
                         <div class="flex">
                             <livewire:inventoriaus-form :uzsakymas_id="$uzsakymas['id']" :uzsakymas_data="$uzsakymas['data']"/>
                         </div>
                         @endif  
-                    </div>
-                    
+                    </div>                 
                 </div>
                 
 
@@ -108,9 +107,8 @@
                             Pašalinti
                         </button>
                     </form>
-                    
                 </div>
-                </div>
+            </div>
                 
         </div>
     </div>

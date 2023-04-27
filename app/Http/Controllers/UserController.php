@@ -66,10 +66,11 @@ class UserController extends Controller
             'vardas' => 'required',
             'pavarde' => 'required',
             'telefonas' => 'required',
-            'prisijungimoVardas' => 'required',
+            'prisijungimoVardas' => 'required|unique',
             'Epastas' => 'required|email',
             'filled' => 'required'
         ], [
+            'prisijungimoVardas.unique' => 'Šis prisijungimo vardas jau užimtas!',
             'vardas.required' => 'Vardo laukas yra privalomas!',
             'pavarde.required' => 'Pavardes laukas yra privalomas!',
             'telefonas.required' => 'Telefono laukas yra privalomas!',

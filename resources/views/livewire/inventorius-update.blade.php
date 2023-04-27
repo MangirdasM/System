@@ -5,37 +5,22 @@
     <div class="flex flex-row ">
         <div>
             <table class="w-full">
-                <thead class="bg-gray-100 border-b-2 border-gray-200">
+                <thead class="bg-gray-200 border-black border-2">
                     <tr>
                         <th class="w-20 p-3 text-sm font-semibold tracking-wide text-left">Tipas.</th>
-                        <th class="p-3 text-sm font-semibold tracking-wide text-left">Pavadinimas</th>
+                        <th class="p-3 w-64 text-sm font-semibold tracking-wide text-left">Pavadinimas</th>
                         <th class="w-24 p-3 text-sm font-semibold tracking-wide text-left">Kiekis</th>
                         <th class="w-24 p-3 text-sm font-semibold tracking-wide text-left"></th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-gray-100">
+                <tbody class="divide-y divide-gray-200">
                 </tbody>
                 @foreach ($uzsakymas->inventorius as $inv)
                 <tr class="bg-white">
-                    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
-                        {{ $inv['tipas'] }}
-                    </td>
+                    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $inv['tipas'] }}</td>
                     <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
                         {{ $inv['pavadinimas'] }}
                     </td>
-                    {{-- <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
-                        @if(now()->format('Y-m-d') > $uzsakymas->data)
-                        
-                        <span
-                        class="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-50">Įvykdytas</span>    
-                        @elseif($uzsakymas->darbuotojai->isEmpty() )
-                        <span
-                            class="p-1.5 text-xs font-medium uppercase tracking-wider text-red-800 bg-red-200 bold rounded-lg bg-opacity-50 ">Pridėti darbuotojus</span>
-                        @else
-                        <span
-                            class="p-1.5 text-xs font-medium uppercase tracking-wider  text-yellow-800 bg-yellow-200 bold rounded-lg bg-opacity-50 ">Paruoštas</span>
-                        @endif
-                    </td> --}}
                     <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $inv->pivot->kiekis }}</td>
                     <td class="flex gap-x-2 p-3 text-sm text-gray-700 whitespace-nowrap">
     
@@ -49,24 +34,8 @@
                         </button>
                     </td>
                 </tr>
-                    {{-- <div class="flex flex-row items-center gap-2 px-2">
-                        {{ $inv->tipas}} {{ $inv->pavadinimas }} {{ $inv->pivot->kiekis }}
-                        {{-- <select wire:model='tipas' class="px-1 block rounded text-lg bg-white border border-gray-400 hover:borderw leading-tight focus:outline-none focus:shadow-outline">
-                            
-                            <option value={{$inv->tipas}}>{{ $inv->pavadinimas }}</option>
-                            
-                            @foreach ($inventorius as $availableInventorius)
-                                <option wire:click="update({{ $availableInventorius['id'] }},{{ $inv->pivot->id }} )">{{ $availableInventorius['pavadinimas'] }}
-                                </option> 
-                            @endforeach 
-                        </select> --}}
-                        {{-- <button class="bg-red-500 rounded hover:bg-red-700" wire:click="deleteInventorius({{ $inv->pivot->id }})">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="red" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                              </svg>  
-                        </button>
-                    </div> --}}
                 @endforeach
+            </table>
         </div>
         
 

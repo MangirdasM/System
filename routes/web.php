@@ -105,3 +105,5 @@ Route::get('/apklausos/{apklausa}', [ApklausosController::class, 'show']);
 Route::get('apklausos/{apklausa}/pildyti', [ApklausosController::class, 'edit']);
 
 Route::put('/apklausos/{apklausa}', [ApklausosController::class, 'update']);
+
+Route::get('/a', [UzsakymaiController::class, 'createPDF']);

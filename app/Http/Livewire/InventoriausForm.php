@@ -22,6 +22,8 @@ class InventoriausForm extends Component
     public $inputs = [];
     public $i = 1;
 
+    protected $listeners = ['refreshComponent' => '$refresh'];
+
     public function add($i)
     {
         $i = $i + 1;
@@ -65,5 +67,7 @@ class InventoriausForm extends Component
  
         $this->resetInputFields();
         session()->flash('message', 'Darbuotojas sėkmingai pridėtas');
+        sleep(1);
+        $this->emit('refreshComponent');
     }
 }

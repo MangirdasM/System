@@ -124,6 +124,8 @@
         <div class="pt-4">
             {{ $uzsakymai->links('pagination::tailwind') }}
         </div>
+
+        <a class="btn btn-primary" href="{{ URL::to('/uzsakymai/pdf') }}">Export to PDF</a>
         
     </div>
 
