@@ -17,7 +17,6 @@ class InventoriusUpdate extends Component
     {
         return view('livewire.inventorius-update', [
             'uzsakymas' => $this->uzsakymas,
-            'inventorius' => InvUzimtumasController::available_inventorius($this->uzsakymas->data, $this->tipas),
         ]);
     }
 

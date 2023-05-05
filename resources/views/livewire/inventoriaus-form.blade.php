@@ -13,7 +13,7 @@
                 <div class="flex gap-2 mt-2">
                     <div class="form-group flex gap-2">
                         <select wire:model='tipas.0'
-                            class="shadow-sm border-gray-300 rounded-md w-full py-2 px-3 text-black-700 leading-tight focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                            class="px-1 py-1 block rounded text-lg bg-white border border-gray-400 hover:borderw leading-tight focus:outline-none focus:shadow-outline"
                             >
                             <option value="Garso įranga">Garso įranga</option>
                             <option value="Šviesos Įranga">Šviesos įranga</option>

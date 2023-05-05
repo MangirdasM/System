@@ -1,11 +1,9 @@
 <?php
-
-namespace App\Http\Controllers;
+namespace App\Services;
 
 use App\Models\Inventorius;
-use Illuminate\Http\Request;
 
-class InvUzimtumasController extends Controller
+class InventoriausService
 {
     public static function available_inventorius($uzsakymo_data, $tipas)
     {
@@ -14,7 +12,6 @@ class InvUzimtumasController extends Controller
         //dd($inventorius);
         
         $collection = collect();
-
         foreach ($inventorius as $inv) {
             $used = $inv->kiekis;
             if (sizeof($inv->uzsakymai)) {
@@ -24,7 +21,7 @@ class InvUzimtumasController extends Controller
                         $used = $used - $value->pivot->kiekis;
                     }
 
-                    if($used > 0 ){
+                    if($used > 0 &&  !$collection->contains($inv)){
                         $collection->push($inv);
                     }
                 }
@@ -38,25 +35,20 @@ class InvUzimtumasController extends Controller
         return $collection;
     }
 
-    public static function available_kiekis($id, $kiekis, $uzsakymo_data)
+    public static function available_kiekis($id, $uzsakymo_data)
     {
-        $uzimtumas = new Inventorius;
-        $inventorius = $uzimtumas->where('id', $id)->get();
-        //dd($inventorius);
-        
-        $collection = collect();
+        $inventorius = Inventorius::with(['uzsakymai' => function ($query) use ($uzsakymo_data) {
+            $query->where('data', $uzsakymo_data);
+        }])->find($id);
 
-        foreach ($inventorius as $inv) {
-            $used = $inv->kiekis;
-            foreach ($inv->uzsakymai as $value) {
-            
-                if ($uzsakymo_data == $value->data) {
-                    $used = $used - $value->pivot->kiekis;
-                }
-            }
-            return $used;
+        if (!$inventorius) {
+            return 0;
+        }
+        $used = $inventorius[0]->kiekis;
+        foreach ($inventorius[0]->uzsakymai as $uzsakymas) {
+            $used -= $uzsakymas->pivot->kiekis;
         }
         
-        
+        return $used; 
     }
 }

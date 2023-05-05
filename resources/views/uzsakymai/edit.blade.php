@@ -69,6 +69,7 @@
                             @else
                                 <div clas="container">
                                     <livewire:darbuotojai-update :uzsakymas="$uzsakymas" />
+                                    <livewire:darbuotoju-form :uzsakymas_id="$uzsakymas['id']" :uzsakymas_data="$uzsakymas['data']" />
                                 </div>
                                 
                             @endif

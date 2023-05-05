@@ -3,9 +3,8 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Inventorius;
 use App\Models\Inv_Uzimtumas;
-use App\Http\Controllers\InvUzimtumasController;
+use App\Services\InventoriausService;
 
 class InventoriausForm extends Component
 {
@@ -45,8 +44,8 @@ class InventoriausForm extends Component
         //InvUzimtumasController::available_inventorius($this->uzsakymas_data);
         return view('livewire.inventoriaus-form', [
             // 'darbuotojai' => InvUzimtumasController::available_inventorius($this->uzsakymas_data),
-            'darbuotojai' => InvUzimtumasController::available_inventorius($this->uzsakymas_data, $this->tipas),
-            'likutis' => InvUzimtumasController::available_kiekis($this->user_id, $this->kiekis, $this->uzsakymas_data,)
+            'darbuotojai' => InventoriausService::available_inventorius($this->uzsakymas_data, $this->tipas),
+            'likutis' => InventoriausService::available_kiekis($this->user_id, $this->uzsakymas_data,)
         ]);
     }
 

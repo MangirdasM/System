@@ -16,7 +16,7 @@
                             class="px-1 py-1 block rounded text-lg bg-white border border-gray-400 hover:borderw leading-tight focus:outline-none focus:shadow-outline">
                             <option>Pasirinkite darbuotoją</option>
                             @foreach ($darbuotojai as $darbuotojas)
-                                <option value={{ $darbuotojas['id'] }}>{{ $darbuotojas['Epastas'] }}</option>
+                                <option value={{ $darbuotojas['id'] }}>{{ $darbuotojas['vardas'].' '.$darbuotojas['pavarde']}}</option>
                             @endforeach
                         </select>
                         @error('user_id.0')
@@ -38,7 +38,7 @@
                                 class="px-1 py-1 block rounded text-lg bg-white border border-gray-400 hover:borderw leading-tight focus:outline-none focus:shadow-outline">
                                 <option>Pasirinkite darbuotoja</option>
                                 @foreach ($darbuotojai as $darbuotojas)
-                                    <option value={{ $darbuotojas['id'] }}>{{ $darbuotojas['Epastas'] }}</option>
+                                    <option value={{ $darbuotojas['id'] }}>{{ $darbuotojas['vardas'].' '.$darbuotojas['pavarde']}}</option>
                                 @endforeach
                             </select>
                             @error('name.' . $value)
