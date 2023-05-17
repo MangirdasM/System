@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Services;
 
 use App\Models\Inventorius;
@@ -10,7 +11,7 @@ class InventoriausService
         $uzimtumas = new Inventorius;
         $inventorius = $uzimtumas->where('tipas', $tipas)->get();
         //dd($inventorius);
-        
+
         $collection = collect();
         foreach ($inventorius as $inv) {
             $used = $inv->kiekis;
@@ -21,15 +22,13 @@ class InventoriausService
                         $used = $used - $value->pivot->kiekis;
                     }
 
-                    if($used > 0 &&  !$collection->contains($inv)){
+                    if ($used > 0 &&  !$collection->contains($inv)) {
                         $collection->push($inv);
                     }
                 }
-            } 
-            else{
+            } else {
                 $collection->push($inv);
             }
-            
         }
 
         return $collection;
@@ -44,11 +43,11 @@ class InventoriausService
         if (!$inventorius) {
             return 0;
         }
-        $used = $inventorius[0]->kiekis;
-        foreach ($inventorius[0]->uzsakymai as $uzsakymas) {
+        $used = $inventorius->kiekis;
+        foreach ($inventorius->uzsakymai as $uzsakymas) {
             $used -= $uzsakymas->pivot->kiekis;
         }
-        
-        return $used; 
+
+        return $used;
     }
 }

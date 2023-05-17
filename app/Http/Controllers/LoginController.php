@@ -42,7 +42,7 @@ class LoginController extends Controller
                 return redirect()->intended('pagrindinis');
             }
             else{
-                return redirect()->intended('redaguoti');
+                return redirect()->intended('redagavimas');
             }
             
         }

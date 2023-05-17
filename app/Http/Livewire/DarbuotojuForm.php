@@ -43,17 +43,22 @@ class DarbuotojuForm extends Component
     }
 
     public function submit()
-    {
-        foreach ($this->user_id as $key => $value) {
-            Uzimtumas::create([
-                'user_id' => $this->user_id[$key], 
-                'uzsakymas_id' => $this->uzsakymas_id,
-            ]);
+    {   if(!empty($this->user_id)){
+            foreach ($this->user_id as $key => $value) {
+                Uzimtumas::create([
+                    'user_id' => $this->user_id[$key], 
+                    'uzsakymas_id' => $this->uzsakymas_id,
+                ]);
+            }
+    
+            $this->inputs = [];
+    
+            $this->resetInputFields();
+            session()->flash('message', 'Darbuotojas sėkmingai pridėtas');
         }
- 
-        $this->inputs = [];
- 
-        $this->resetInputFields();
-        session()->flash('message', 'Darbuotojas sėkmingai pridėtas');
+        
+        else{
+            session()->flash('message', 'Nepasirinkote darbuotojo');
+        }
     }
 }

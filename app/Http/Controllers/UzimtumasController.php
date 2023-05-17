@@ -18,9 +18,12 @@ class UzimtumasController extends Controller
         foreach ($darbuotojai as $darbuotojas) {
             if (sizeof($darbuotojas->uzsakymai)) {
                 foreach ($darbuotojas->uzsakymai as $value) {
-
+                    
                     if ($uzsakymo_data != $value->data) {
-                        $collection->push($darbuotojas);
+                        if(!$collection->contains($darbuotojas)){
+                            $collection->push($darbuotojas);
+                        }
+                        
                     }
                 }
             } 
@@ -29,7 +32,6 @@ class UzimtumasController extends Controller
             }
             
         }
-
         return $collection;
     }
 

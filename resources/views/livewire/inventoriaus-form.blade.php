@@ -12,16 +12,17 @@
             <form>
                 <div class="flex gap-2 mt-2">
                     <div class="form-group flex gap-2">
-                        <select wire:model='tipas.0'
+                        <select wire:model='tipas'
                             class="px-1 py-1 block rounded text-lg bg-white border border-gray-400 hover:borderw leading-tight focus:outline-none focus:shadow-outline"
                             >
+                            <option value="Tipas">Pasirinkti tipą</option>
                             <option value="Garso įranga">Garso įranga</option>
                             <option value="Šviesos Įranga">Šviesos įranga</option>
                             <option value="Papildoma">Papildoma</option>
                             <option value="Laidai">Laidai</option>
                             <option value="Kita">Kita</option>
                         </select>
-                        <select wire:model='user_id.0'
+                        <select wire:model='user_id'
                             class="px-1 py-1 block rounded text-lg bg-white border border-gray-400 hover:borderw leading-tight focus:outline-none focus:shadow-outline">
                             <option>Pasirinkite inventorių</option>
                             @foreach ($darbuotojai as $darbuotojas)
@@ -32,7 +33,7 @@
                             <span class="text-red-500 text-xs">{{ $message }}</span>
                         @enderror
                         <div>
-                            <input wire:model='kiekis.0' type="number" name="kiekis"
+                            <input wire:model='kiekis' type="number" name="kiekis"
                                 class="text-lg w-12 p-1 border border-gray-400 rounded"
                                 placeholder="{{ $likutis }}" id="kiekis" />
 

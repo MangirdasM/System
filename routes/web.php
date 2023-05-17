@@ -29,7 +29,7 @@ Route::get('/darbuotojai/sukurti', [UserController::class, 'create']);
 Route::post('/darbuotojai', [UserController::class, 'store']);
 
 // Show edit and update form
-Route::get('/redaguoti',[UserController::class,'edit']);
+Route::get('/redagavimas',[UserController::class,'edit']);
 
 // Update user
 Route::put('/redaguoti',[UserController::class,'update']);

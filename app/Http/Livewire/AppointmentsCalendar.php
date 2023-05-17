@@ -17,10 +17,10 @@ class AppointmentsCalendar extends LivewireCalendar
     {
         $uzsakymai = Uzsakymas::all();
 
-        $a =  User::where('id', Auth::user()->id)->get();
-        $uzsakymai = $a[0]->uzsakymai;
-        #dd($a);
-        $c =  $uzsakymai
+        $user =  User::where('id', Auth::user()->id)->get();
+        $uzsakymai = $user[0]->uzsakymai;
+
+        $uzsakymai_calendar =  $uzsakymai
         ->map(function ($uzsakymai) {
             return [
                 'id' => $uzsakymai->id,
@@ -31,7 +31,7 @@ class AppointmentsCalendar extends LivewireCalendar
         });
 
 
-        $b = new \Illuminate\Database\Eloquent\Collection($c);
-        return $b;
+        $uzsakymai_collection = new \Illuminate\Database\Eloquent\Collection($uzsakymai_calendar);
+        return $uzsakymai_collection;
     }
 }

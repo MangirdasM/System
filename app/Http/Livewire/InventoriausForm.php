@@ -17,27 +17,8 @@ class InventoriausForm extends Component
 
     public $showDiv = false;
 
-    public $updateMode = false;
-    public $inputs = [];
-    public $i = 1;
-
     protected $listeners = ['refreshComponent' => '$refresh'];
 
-    public function add($i)
-    {
-        $i = $i + 1;
-        $this->i = $i;
-        array_push($this->inputs ,$i);
-    }
- 
-    public function remove($i)
-    {
-        unset($this->inputs[$i]);
-    }
-
-    private function resetInputFields(){
-        $this->user_id = '';
-    }
 
     public function render()
     {   
@@ -51,22 +32,31 @@ class InventoriausForm extends Component
 
     public function submit()
     {
+        $available = InventoriausService::available_kiekis($this->user_id, $this->uzsakymas_data);
+
+        if(!empty($this->user_id)){
+            
+            Inv_Uzimtumas::create([
+                'inventorius_id' => $this->user_id, 
+                'uzsakymas_id' => $this->uzsakymas_id,
+                'kiekis' => $this->kiekis
+            ]);
+            session()->flash('message', 'Darbuotojas sėkmingai pridėtas');
+            sleep(1);
+        }
+        elseif($this->kiekis > $available){
+            session()->flash('message', 'Turimas kiekis yra nepakankamas!');
+            sleep(1);
+        }
+        else{
+            session()->flash('message', 'Nepasirinkote inventoriaus!');
+            sleep(2);
+        }
 
         
-        foreach ($this->user_id as $key => $value) {
-            //InvUzimtumasController::available_kiekis($this->user_id[$key], $this->kiekis[$key]);
-            Inv_Uzimtumas::create([
-                'inventorius_id' => $this->user_id[$key], 
-                'uzsakymas_id' => $this->uzsakymas_id,
-                'kiekis' => $this->kiekis[$key]
-            ]);
-        }
  
-        $this->inputs = [];
- 
-        $this->resetInputFields();
-        session()->flash('message', 'Darbuotojas sėkmingai pridėtas');
-        sleep(1);
+        
+        
         $this->emit('refreshComponent');
     }
 }
