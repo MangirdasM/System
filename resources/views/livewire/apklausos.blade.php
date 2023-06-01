@@ -19,21 +19,11 @@
                     </div>
                     <div class="text-gray-500">{{ $apklausa['data'] }}</div>
                     <div>
-                        @if (now()->format('Y-m-d') > $apklausa->data)
-                            <span
-                                class="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-50">Įvykdytas</span>
-                        @elseif($apklausa->darbuotojai->isEmpty())
-                            <span
-                                class="p-1.5 text-xs font-medium uppercase tracking-wider text-red-800 bg-red-200 bold rounded-lg bg-opacity-50 ">Pridėti
-                                darbuotojus</span>
-                        @else
-                            <span
-                                class="p-1.5 text-xs font-medium uppercase tracking-wider  text-yellow-800 bg-yellow-200 bold rounded-lg bg-opacity-50 ">Paruoštas</span>
-                        @endif
+                        <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-50">Užpildyta</span>
                     </div>
                 </div>
                 <div class="text-sm text-gray-700">
-                    {{ $apklausa['vieta'] }} {{ '/' }} {{ $apklausa['sventestipas'] }}
+                    {{ $apklausa->uzsakymai->vieta }} {{ '/' }} {{ $apklausa->uzsakymai->sventestipas }}
                 </div>
             </div>
         @endforeach
@@ -53,7 +43,7 @@
             <tbody class="divide-y divide-gray-100">
 
                 @foreach ($apklausos as $apklausa)
-                    @if (Auth::user()->hasRole('administratorius'))
+                    @if (Auth::user()->hasRole('Administratorius'))
                         @if ($apklausa->filled == '1')
                             <tr class="bg-white">
                                 <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
@@ -69,7 +59,10 @@
                                 <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
                                     <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-50">Užpildyta</span>
                                 </td>
-                                <td class="flex gap-x-2 p-3 text-sm text-gray-700 whitespace-nowrap"></td>
+                                <td class="flex gap-x-2 p-3 text-sm text-gray-700 whitespace-nowrap">
+                                    {{$apklausa->uzsakymai->darbuotojai->where('id', $apklausa->darbuotojas_id)->first()->vardas}}
+                                    {{$apklausa->uzsakymai->darbuotojai->where('id', $apklausa->darbuotojas_id)->first()->pavarde}}
+                                </td>
                             </tr>
                         @endif
                     @else
@@ -102,6 +95,8 @@
                                 @endif
                             </td>
                             <td class="flex gap-x-2 p-3 text-sm text-gray-700 whitespace-nowrap">
+                                {{$apklausa->uzsakymai->darbuotojai->where('id', $apklausa->darbuotojas_id)->first()->vardas}}
+                                {{$apklausa->uzsakymai->darbuotojai->where('id', $apklausa->darbuotojas_id)->first()->pavarde}}
                             </td>
                         </tr>
                         @endif

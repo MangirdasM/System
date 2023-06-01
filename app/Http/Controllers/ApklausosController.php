@@ -31,6 +31,7 @@ class ApklausosController extends Controller
             'kuras' => 'required',
             'gedimai' => 'required',
             'komentarai' => 'required',
+            'filled' => 'required'
         ],[
             'virsvalandziai.required' => 'Datos laukas yra privalomas!',
             'islaidos.required' => 'Vietos laukas yra privalomas!',

@@ -21,15 +21,6 @@ class UserController extends Controller
         return view('darbuotojai.create');
     }
 
-    public function show(User $user)
-    {
-        
-        return view('darbuotojai.show', [
-            'darbuotojas' => $user
-
-        ]);
-    }
-
     public function store(Request $request){
 
     
@@ -85,5 +76,11 @@ class UserController extends Controller
 
 
         return back()->with('message', 'Vartotojas atnaujintas!');
-    }   
+    }  
+    
+    public function delete(User $darbuotojas)
+    {
+        $darbuotojas->delete();
+        return redirect('/darbuotojai')->with('message', 'Darbuotojas sėkmingai pašalintas!');
+    }
 }

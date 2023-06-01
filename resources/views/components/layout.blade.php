@@ -96,9 +96,9 @@
                           </svg>
                           Vartotojas
                     </a>       
-                    <a href="{{ url('logout') }}"
+                    <a href="{{ url('atsijungti') }}"
                         class="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white">
-                        <form action="/logout" class="inline" method="POST">
+                        <form action="/atsijungti" class="inline" method="POST">
                             @csrf
                             <button type="submit" class="flex gap-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">

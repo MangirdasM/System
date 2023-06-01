@@ -38,7 +38,7 @@ class DarbuotojaiTest extends TestCase
         ]);
  
         $this->assertAuthenticated();
-        $response->assertRedirect('/redaguoti');
+        $response->assertRedirect('/pagrindinis');
     }
 
     public function test_darbuotojas_can_not_login_with_invalid_password()
@@ -62,7 +62,7 @@ class DarbuotojaiTest extends TestCase
     {
         $user = User::find(2);
         
-        $response = $this->actingAs($user)->put('/redaguoti', [
+        $response = $this->actingAs($user)->put('/redagavimas', [
             'vardas' => 'test_name',
             'pavarde' => 'pavarde',
             'Epastas' => 'test@test.com',
@@ -75,16 +75,16 @@ class DarbuotojaiTest extends TestCase
             'vardas' => 'test_name',]);
     }
 
-    function test_can_create_post()
+    function test_can_add_darbuotojas_to_uzsakymas()
     {
         $this->actingAs(User::find(2));
  
         $response = Livewire::test(DarbuotojuForm::class)
-            ->set('user_id', ['1'])
-            ->set('uzsakymas_id', ['1']);
+            ->set('user_id', ['2'])
+            ->set('uzsakymas_id', '3');
 
         $response->call('submit');
 
-        $this->assertTrue(Uzimtumas::where('uzsakymas_id', '1')->exists());
+        $this->assertTrue(Uzimtumas::where('uzsakymas_id', '3')->exists());
     }
 }

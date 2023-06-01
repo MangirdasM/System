@@ -70,17 +70,4 @@ class UzsakymaiTest extends TestCase
         $this->assertDatabaseHas('uzsakymas', [
             'vieta' => 'Vilnius',]);
     }
-
-    // function test_can_create_post()
-    // {
-    //     $this->actingAs(User::find(2));
- 
-    //     $response = Livewire::test(DarbuotojuForm::class)
-    //         ->set('user_id', ['1'])
-    //         ->set('uzsakymas_id', ['1']);
-
-    //     dd($response);
-
-    //     $this->assertTrue(Uzimtumas::where('uzsakymas_id', '1')->exists());
-    // }
 }

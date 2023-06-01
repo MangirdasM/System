@@ -11,7 +11,7 @@ class Apklausa extends Model
     use HasFactory;
     protected $table = 'apklausos';
 
-    protected $fillable = ['gedimai', 'komentarai', 'kuras', 'virsvalandziai', 'islaidos'];
+    protected $fillable = ['gedimai', 'komentarai', 'kuras', 'virsvalandziai', 'islaidos', 'filled'];
 
     public function uzsakymai(): BelongsTo {
         return $this->belongsTo(Uzsakymas::class, 'uzsakymas_id', 'id');

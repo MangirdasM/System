@@ -33,6 +33,7 @@ class InventoriusController extends Controller
             'pavadinimas.required' => 'Pavadinimo laukas yra privalomas!',
             'kiekis.required' => 'Kiekio laukas yra privalomas!',
             'kodas.required' => 'Kontaktinio numerio laukas yra privalomas!',
+            'nuotrauka.image' => 'Nuotrauka turi būti png arba jpeg tipo!'
         ]);
 
         $imagePath = request('nuotrauka')->store('uploads', 'public');

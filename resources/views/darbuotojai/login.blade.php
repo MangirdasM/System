@@ -23,7 +23,7 @@
                             @enderror
                         </div>
                         <div class="mb-6">
-                            <label for="password" class="block text-gray-700 font-bold mb-2">
+                            <label for="password" class="inline-block text-lg mb-2">
                                 Slaptažodis
                             </label>
                             <input type="password" class="shadow-sm border-gray-300 rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-blue-500 focus:border-blue-500" name="password" />

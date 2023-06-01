@@ -58,7 +58,7 @@ class DarbuotojuForm extends Component
         }
         
         else{
-            session()->flash('message', 'Nepasirinkote darbuotojo');
+            session()->flash('message', 'Nepasirinkote darbuotojo+');
         }
     }
 }
