@@ -52,11 +52,13 @@
                             Grįžti
                         </button>
                     </a>
+                    @if (Auth::user()->hasRole('Administratorius'))
                     <a href="{{$inv->id}}/redagavimas" class="text-blue-400 rounded-xl">
                         <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold h-10 px-5 rounded">
                             Redaguoti
                         </button>
                     </a>
+                    
                     <form method="POST" action="/inventorius/{{$inv->id}}/">
                         @csrf
                         @method("DELETE")
@@ -64,6 +66,7 @@
                             Pašalinti
                         </button>
                     </form>
+                    @endif
                     
                 </div>
                 </div>

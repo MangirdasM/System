@@ -33,7 +33,9 @@
                     <th class="w-24 p-3 text-sm font-semibold tracking-wide text-left">Tipas</th>
                     <th class="w-24 p-3 text-sm font-semibold tracking-wide text-left">Pavadinimas</th>
                     <th class="w-24 p-3 text-sm font-semibold tracking-wide text-left">Kiekis</th>
+                    @if (Auth::user()->hasRole('Administratorius'))
                     <th class="w-12 p-3 text-sm font-semibold tracking-wide text-left"></th>
+                    @endif
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-100">
@@ -54,6 +56,7 @@
                             
                         </td>
                         <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $inv['kiekis'] }}</td>
+                        @if (Auth::user()->hasRole('Administratorius'))
                         <td class="flex gap-x-2 p-3 text-sm text-gray-700 whitespace-nowrap">
                             <button wire:click="deleteInventorius({{ $inv->id }})">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -72,6 +75,7 @@
                             
 
                         </td>
+                        @endif
                     </tr>
                 @endforeach
             </tbody>

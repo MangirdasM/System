@@ -45,7 +45,9 @@
                     <th class="p-3 text-sm font-semibold tracking-wide text-left">Pavadinimas</th>
                     <th class="w-24 p-3 text-sm font-semibold tracking-wide text-left">Statusas</th>
                     <th class="w-24 p-3 text-sm font-semibold tracking-wide text-left">Data</th>
+                    @if (Auth::user()->hasRole('Administratorius'))
                     <th class="w-24 p-3 text-sm font-semibold tracking-wide text-left"></th>
+                    @endif
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-100">
@@ -76,6 +78,7 @@
                             @endif
                         </td>
                         <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $uzsakymas['data'] }}</td>
+                        @if (Auth::user()->hasRole('Administratorius'))
                         <td class="flex gap-x-2 p-3 text-sm text-gray-700 whitespace-nowrap">
 
 
@@ -93,6 +96,7 @@
                             </svg>
 
                         </td>
+                        @endif
                     </tr>
                 @endforeach
             </tbody>
@@ -103,7 +107,7 @@
 
 
     </div>
-
+    @if (Auth::user()->hasRole('Administratorius'))
     <div class='p-5 flex flex-col items-center justify-center'>
         <form action="/uzsakymai/sukurti" method="GET">
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
@@ -113,11 +117,8 @@
         <div class="pt-4">
             {{ $uzsakymai->links('pagination::tailwind') }}
         </div>
-
-        
-        
     </div>
-
+    @endif
 </div>
 
 

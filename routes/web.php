@@ -1,12 +1,14 @@
 <?php
 
 use App\Services\pdfService;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ApklausosController;
 use App\Http\Controllers\UzsakymaiController;
 use App\Http\Controllers\InventoriusController;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,9 +26,10 @@ Route::get('/darbuotojai', [UserController::class, 'index'])->middleware('auth')
 
 // Show create form
 Route::get('/darbuotojai/sukurti', [UserController::class, 'create'])->middleware('auth');
-
 // Store listing data
 Route::post('/darbuotojai', [UserController::class, 'store'])->middleware('auth');
+
+
 
 // Show edit and update form
 Route::get('/redagavimas',[UserController::class,'edit'])->middleware('auth');

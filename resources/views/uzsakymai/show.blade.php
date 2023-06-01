@@ -90,16 +90,19 @@
                             Grįžti
                         </button>
                     </a>
+                    @if (Auth::user()->hasRole('Administratorius'))
                     <a href="{{$uzsakymas->id}}/redagavimas" class="text-blue-400 rounded-xl">
                         <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold h-10 px-5 rounded">
                             Redaguoti
                         </button>
                     </a>
+                    @endif
                     <a href="{{$uzsakymas->id}}/pdf" class="text-blue-400 rounded-xl">
                         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold h-10 px-5 rounded">
                             Išsaugoti
                         </button>
                     </a>
+                    @if (Auth::user()->hasRole('Administratorius'))
                     <form method="POST" action="/uzsakymai/{{$uzsakymas->id}}/">
                         @csrf
                         @method("DELETE")
@@ -107,6 +110,7 @@
                             Pašalinti
                         </button>
                     </form>
+                    @endif
                 </div>
             </div>
                 
